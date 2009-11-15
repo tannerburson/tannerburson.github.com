@@ -1,8 +1,7 @@
-README for iruel.net
+h2. iruel.net
 
-You'll need the net/sftp gem to run the rake upload task.
+This is the source for my personal blog and showcase on the internets, "iruel.net":http://iruel.net. It is heavily based on jduff's "Jekyll":http://github.com/mojombo/jekyll/ configuration (Jekyll is a static site generator) and includes a set of rake tests to automate deployment to my "web host":https://www.nearlyfreespeech.net/, which I highly recommend. 
 
-For more info, refer to mojombo-jekyll.
+Over time, it will (I guess) diverge more in terms of look.
 
-
-Bruno A
+All code is MIT licensed (as Jekyll), but content under the *_drafts* and *_posts* folders is (c) 2009 Bruno Antunes.
