@@ -1,6 +1,7 @@
 require 'rake'
 require 'net/sftp'
 require 'fileutils'
+require 'yaml'
 
 USERNAME = ''
 PASSWORD = ''

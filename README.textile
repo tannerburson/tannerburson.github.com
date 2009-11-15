@@ -1,0 +1,8 @@
+README for iruel.net
+
+You'll need the net/sftp gem to run the rake upload task.
+
+For more info, refer to mojombo-jekyll.
+
+
+Bruno A
