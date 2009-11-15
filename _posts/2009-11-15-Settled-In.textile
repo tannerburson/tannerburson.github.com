@@ -1,0 +1,11 @@
+---
+layout: post
+title: Settled In
+tags: [random, geek]
+author_name: Bruno A
+author_uri: http://twitter.com/sardaukar_siet
+---
+
+<p>So, all the links should be working now and so on (still waiting for Google Custom Search to index the site) and I've pushed my changes to jduff's template to my github page (it's on the sidebar to the right). All in all, this solution really works for me now: I can write my posts in any editor I like, and I always have a copy of the website with me since basically the publishing process recreates it from scratch all the time.</p>
+
+<p>I'm also pleasently surprised with <a href="https://www.nearlyfreespeech.net">NearlyFreeSpeech</a>, my new webhost, and their "pay-as-you-use" approach - highly recommended (so far!), go give them a look.</p>

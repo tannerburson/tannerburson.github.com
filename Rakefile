@@ -3,14 +3,6 @@ require 'net/sftp'
 require 'fileutils'
 require 'yaml'
 
-conf = YAML.load(IO.read('host.yml'))
-
-USERNAME = conf['host']['user']
-HOST = conf['host']['url']
-REMOTE_ROOT = conf['host']['root']
-print "SSH password: " unless conf['host'].has_key?('pass')
-PASSWORD = conf['host'].has_key?('pass') ? conf['host']['pass'] : STDIN.gets.strip!
-
 task :default => :upload
 
 #desc 'create new post'
@@ -51,6 +43,15 @@ end
 
 desc 'upload to NFS'
 task :upload do
+	
+	conf = YAML.load(IO.read('host.yml'))
+
+	USERNAME = conf['host']['user']
+	HOST = conf['host']['url']
+	REMOTE_ROOT = conf['host']['root']
+	print "SSH password: " unless conf['host'].has_key?('pass')
+	PASSWORD = conf['host'].has_key?('pass') ? conf['host']['pass'] : STDIN.gets.strip!
+	
 	_start = Time.now
 	
 	puts "\ndeleting generated site"
