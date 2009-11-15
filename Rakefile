@@ -3,10 +3,13 @@ require 'net/sftp'
 require 'fileutils'
 require 'yaml'
 
-USERNAME = ''
-PASSWORD = ''
-HOST = ''
-REMOTE_ROOT = '/home/public/'
+conf = YAML.load(IO.read('host.yml'))
+
+USERNAME = conf['host']['user']
+HOST = conf['host']['url']
+REMOTE_ROOT = conf['host']['root']
+print "SSH password: " unless conf['host'].has_key?('pass')
+PASSWORD = conf['host'].has_key?('pass') ? conf['host']['pass'] : STDIN.gets.strip!
 
 task :default => :upload
 
@@ -47,39 +50,45 @@ task :purge do
 end
 
 desc 'upload to NFS'
-task :upload do	
-	puts "deleting generated site"
+task :upload do
+	_start = Time.now
+	
+	puts "\ndeleting generated site"
 	Rake::Task['purge'].execute
 	
-	puts "generating site"
+	puts "\ngenerating site"
   Rake::Task['generate'].execute
     
   Dir.chdir('_site')
 
 	Net::SSH.start(HOST, USERNAME, :password => PASSWORD ) do |ssh|
-		puts "SSH login successful!"
+		puts "\nSSH login successful!"
 		
 		ssh.sftp.connect do |sftp|
 			puts "SFTP login successful!"
 			
-			["Rakefile","iruel.net.kpf"].each {|e| puts "deleting #{e}"; File.delete e }
+			puts "\nremoving local files"
+			
+			["Rakefile","iruel.net.kpf","README.textile","host.yml","new_post","new_post.cyg.sh"].each {|e| puts "\tdeleting #{e}"; File.delete e }
+			
+			puts "\ninitiating upload..."
 			
 			FileList['**/*'].each do |file|
 				if File.directory? file
-					puts "creating dir #{file}"
+					puts "\tcreating dir #{file}"
 					begin
 						sftp.mkdir! REMOTE_ROOT + file
 					rescue Net::SFTP::StatusException
-						puts "WARNING: removing #{file}"
+						puts "\tWARNING: removing #{file}"
 						ssh.exec! 'rm -Rf ' + REMOTE_ROOT + file
 						retry
 					end
 				else
-					puts "uploading file #{file}"
+					puts "\tuploading file #{file}"
 					begin
 						sftp.upload! file, REMOTE_ROOT + file
 					rescue Net::SFTP::StatusException
-						puts "WARNING: removing #{file}"
+						puts "\tWARNING: removing #{file}"
 						ssh.exec! 'rm -Rf ' + REMOTE_ROOT + file
 					end
 				end
@@ -90,8 +99,8 @@ task :upload do
 	
 	Dir.chdir('..')
 		
-	puts "deleting generated site"
+	puts "\ndeleting generated site"
 	Rake::Task['purge'].execute
 	
-	puts "done!"
+	puts "\ndone! (#{(Time.now - _start).to_s})"
 end

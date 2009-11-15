@@ -1,0 +1,6 @@
+host: {
+  url: ssh_host,
+  user: user_name,
+  root: /home/public/,
+  pass: password
+}
