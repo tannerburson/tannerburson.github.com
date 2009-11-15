@@ -1,6 +1,6 @@
 h2. iruel.net
 
-This is the source for my personal blog and showcase on the internets, "iruel.net":http://iruel.net. It is heavily based on jduff's "Jekyll":http://github.com/mojombo/jekyll/ configuration (Jekyll is a static site generator) and includes a set of rake tests to automate deployment to my "web host":https://www.nearlyfreespeech.net/, which I highly recommend. 
+This is the source for my personal blog and showcase on the internets, "iruel.net":http://iruel.net. It is heavily based on jduff's "Jekyll":http://github.com/mojombo/jekyll/ configuration (Jekyll is a static site generator) and includes a set of rake tasks to automate deployment via SFTP to my "web host":https://www.nearlyfreespeech.net/, which I highly recommend. 
 
 Over time, it will (I guess) diverge more in terms of look.
 
