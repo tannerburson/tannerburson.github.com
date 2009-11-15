@@ -102,5 +102,5 @@ task :upload do
 	puts "\ndeleting generated site"
 	Rake::Task['purge'].execute
 	
-	puts "\ndone! (#{(Time.now - _start).to_s})"
+	puts "\ndone! (in #{(Time.now - _start).to_s} seconds)"
 end
