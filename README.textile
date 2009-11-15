@@ -4,7 +4,7 @@ This is the source for my personal blog and showcase on the internets, "iruel.ne
 
 Over time, it will (I guess) diverge more in terms of look.
 
-h1. host.yml
+h3. host.yml
 
 The webhost SSH connection info is stored in a YAML file called *host.yml*, and should be self explanatory - the 'pass' key is optional, if it's not present you'll be prompted for the SSH password.
 
