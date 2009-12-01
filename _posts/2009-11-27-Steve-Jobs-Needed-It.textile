@@ -1,0 +1,17 @@
+---
+layout: post
+title: Steve Jobs needed it
+tags: [random]
+author_name: Bruno A
+author_uri: http://twitter.com/sardaukar_siet
+---
+
+I've just read "this article":http://www.techcrunch.com/2009/11/26/steve-jobs-apple-1997 on TechCrunch about Steve Jobs' triumphant return to Apple after being let go by the same CEO he hired from Pepsi, and it got me thinking - where would he be without it?
+
+But before going into that, there's something most people miss in this story - Jobs left Apple in 1985 for a reason! The company was smaller back then and relied on a few key people for their engineering needs, since the knowledge required to build the world's first mass-produced GUI computer wasn't exactly around the corner. And Jobs' legendary bad temper was getting on those people's nerves.
+
+So, faced with this situation and with dwindling sales after the triumphant introduction of the Macintosh just one year before (Jobs expected 500,000 sales in months - they only sold around 10% of that), Sculley (the then CEO) forced Jobs out of the Macintosh team - this was seen as a slap in the face, and Steve-O's huge ego could not let him stay at Apple after it happened. Must have been a terrible time for him, but I'm pretty sure he's thankful for it after all these years. He started NeXT after that, although not entirely from scratch - in a typical Jobsy move, he poached his top employees from Apple before leaving. 
+
+An important part of the story here too is that NeXT was very, very close to failure and oblivion before being purchased by Apple (the huge price-tag is like 90% for Jobs and 10% for company anyway) since nobody could afford those design pieces that also happened to be computers. I believe Jobs' "sabbatical" at NeXT also showed him that the "design piece" mantra could work for more than just computers as people wanted a way out from black Sony Walkmans just as much as from beige PC boxes.
+
+There's more than one way to spin this, of course. One could think the experience humbled him, and he returned and remained successful by being more sympathetic to those under him. Or one can think he thinks Apple finally came to their senses and he still has time to save the company. In the end, it matters little - even with all his arrogance and such, Steve Jobs remains, for me, one of the industry's icons and manages to stay in that line between non-techie and tech-savvy with finesse.
