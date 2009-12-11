@@ -1,0 +1,18 @@
+---
+layout: post
+title: Codebits aftermath
+tags: [codebits, events, code]
+author_name: Bruno A
+author_uri: http://twitter.com/sardaukar_siet
+---
+
+So, "Codebits":http://codebits.eu is over now (as is my caffeine + pizza + peanut M&M's withdrawal), and I must say that overall, it was cool.
+
+Of course, there were the usual rough edges you get when you gather a bunch of nerds together (guys thinking they're rock stars and treating the friendly people serving us pizza like trash, a guy next to the coder tables listening to a football match with the volume up to 11 on his laptop, one of the staff treating me and a friend of mine like "weird people" saying PT is ripping us off with the event and that we should present a wind power project in Jupiter's Big Red Storm - I shit you not - and the guys always hogging the arcades) but overall it was cool.
+
+Me and "my":http://twitter.com/AnibalCaixinha "team":http://twitter.com/amr0th had a very ambitious project and we couldn't finish, but there's interest in bringing it to fruition soon, so it's still a possibility. My friend "Pedro":http://twitter.com/pedromfs was there for the whole coding contest, but ran into similar issues.
+
+As for the talks, the "Ruby one":http://codebits.eu/intra/s/session/58 was kinda OK, but the presenter was very nervous in my opinion. Still, every Rubyist should definitely learn more about the inner guts of the VM and find out why things like **eval** are so.. well, evil :) Mitch Altman's "talk":http://codebits.eu/intra/s/session/95 was very interesting too. Unfortunately, the "PhoneGap":http://codebits.eu/intra/s/session/71 one was delayed and I only had 4 hours off from work to attend!
+
+All in all, as I said, a cool event even if the typical "rockstar" attitude of non-rockstar kids who know about the LastThing gets on my nerves a bit. And also, guys - if you're going just for the MAME cabinet or the Xbox360s, stay at home next year since I'm thinking about attending! :)
+
