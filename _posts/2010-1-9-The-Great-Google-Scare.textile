@@ -1,0 +1,32 @@
+---
+layout: post
+title: The Great Google Scare
+tags: [google, be_afraid, tech, opinion]
+author_name: Bruno A
+author_uri: http://twitter.com/sardaukar_siet
+---
+
+There's been a "lot":http://google-opensource.blogspot.com/2009/11/hey-ho-lets-go.html of "weird":http://code.google.com/speed/public-dns/ "things":http://googleresearch.blogspot.com/2009/11/2x-faster-web.html coming out of Google lately. For some, it is the inevitability of wanting to get a larger chunk of something, whether it is the mobile market with Android or the desktop market with Chromium. For others, it is starting to look all too Redmond-ish.
+
+For others still, it may just be the inevitability of competition, since you can't compete with Apple and Microsoft being nice - because they're not nice (Google has certainly been the target of my outspoken rage for their non-open "open-source" Android strategy).
+
+I do believe there's talent at work at Google, and their engineers believe they are adhering to the "do no evil" dogma in place. But, in practical terms, Google is apparently so big now they're coming down with a severe case of "NIH syndrome":http://en.wikipedia.org/wiki/Not_Invented_Here and when you gather the world's smartest geeks (apparently) in a coder's republic like Google with it's intensive peer-review-before-release process, you're bound to get internal projects whose authors believe them to be a greater gift to the general public.
+
+For me, the warning lights were on since late 2008, when "this":http://neosmart.net/blog/2008/google-doesnt-use-openid/ hit the tubes. Here was Google's chance to shine and embrace an open system (of which they're so fond of) and instead they went all embrace-extend on it. This, along with the buzz on the net that Google was starting to become less and less a "free-roaming" company and more like an agenda fulfilling one for new hires made me feel a bit sad, but also a bit happy. Google was finally coming down with the major diseases of big companies, which means they were one!
+
+The market needs a company like Google - big (creative, competent) companies usually end up releasing something good among all the things we don't like. But still, in light of all these recent events, my relationship with Google is definitely going to change.
+
+For one, I stopped using Gmail's online interface at home. I know, it's very good, but the recent release of "Thunderbird 3":http://www.mozillamessaging.com/en-US/thunderbird/ has finally ended my search for a good desktop email client - the search features are very good, and even if there are a few bugs here and there, it's an amazing "point-0" release. With it's Lightning calendar integration and Google provider add-on, I've also stopped using Google Calendar and the OpenPGP integration is a welcome plus.
+
+This is not one of those "old man yells at cloud" posts. I have a lot of stuff online these days, and I merely want to reduce my exposure surface to online ads and tracking. Remember, Web 3.0 will be all about privacy and filtering the noise. Broadband speeds at home are becoming faster and more reliable, and stuff like the "Tonido Plug":http://www.tonidoplug.com/ make being your own host for all online needs easier by the day. And besides, being your own master has other appealing qualities.
+
+It's too bad Google has apparently lost their way, but for me there is no doubt - like an old Zen master once said "if you really need to ask, you don't really know". And when stuff like "this":http://googleblog.blogspot.com/2009/12/meaning-of-open.html is circulating at Google *explaining* the meaning of openness, something is very wrong indeed.
+
+I, for one, hope they get back on track soon.
+
+
+
+
+
+
+h6. _PS: Go (the language's) name was already taken by another language. So was Nexus-1. When will Google start, you know, googling for product names before releasing them? :)_
