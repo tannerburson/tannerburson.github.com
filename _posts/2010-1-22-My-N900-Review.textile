@@ -1,0 +1,150 @@
+---
+layout: post
+title: My N900 Review
+tags: [review, tech, maemo, n900]
+author_name: Bruno A
+author_uri: http://twitter.com/sardaukar_siet
+---
+
+p<>. &nbsp;
+
+p<>. This is not the typical N900 review, as I find the "normal" ones too superficial (see "Engadget":http://www.engadget.com/2010/01/19/nokia-n900-review/ and "Ubergizmo":http://www.ubergizmo.com/15/archives/2009/11/nokia-n900-review.html). Instead, I'll give you an intro to the device's background and the current state of affairs for smartphones as a whole (IMHO(In My Humble Opinion)), and also talk about some aspects of the Linux flavor running on the N900.
+
+h3. The state of things
+
+p<>. So, it's 2010 and Nokia still rules (supreme) the worldwide mobile handset market. But these two "little known" companies (Apple and Google) know that all that "convergence" talk from the early and mid 90s is actually coming to life now, since mobile broadband is now a reality and can only improve over time.
+
+p<>. Thus, the battle for control over the NextBigSoftwarePlatform, the one running the show for the mobile scene (which pretty soon will be the only scene that matters, just look at the traditional desktop sale numbers) is on, and Nokia for one was the least prepared for it, paradoxically. The NextBigSoftwarePlatform is just like the spice in Frank Herbert's _Dune_: he who controls it, controls the Universe, at least for the foreseeable future. Mobile ad revenue is a very, very big market, and controlling a big chunk of it assures your company has a bright future. Just look at what control of the PC platform has done for Microsoft.
+
+p<>. Why, then, is Nokia in such a bad position? Well, because of Symbian. The Symbian OS is a remnant from "EPOC":http://en.wikipedia.org/wiki/Symbian_OS#EPOC times (remember Psion?) which powers almost all of Nokia's phones and it has not aged well. It is suffering from severe bit rot, and the future is in touch interfaces - something that Symbian is ill-prepared to process, both at a technical level, and a conceptual one. You can't bolt on something like touchscreen UIs to a mature product, since input processing has naturally become an intrinsic part of such product and probably very tightly-coupled with the rest of it. The Symbian OS did its part for establishing Nokia's dominance, and it's interface is as recognizable these days as maybe a _Super Mario Bros._ level, but times must and do always change - Nokia has not caught up.
+
+p<>. BUT they have not been sleeping. Nokia recognized they needed a way out, and being Finnish, I'm sure they've heard about Linux! So, Maemo was born. A Linux distribution to replace their aging core OS. An ambitious, multi-stage plan to bring Nokia back to the top. They would tap into the collective workforce of some 5.000 kernel developers worldwide, most of them on the payrolls of RedHat, IBM and Google, among other big corporations, and polish it up for mobile consumption. Of course, something with this scope is not born overnight, and so a side-project to the smartphone core business was setup: the NITs, or Nokia Internet Tablets. They would serve as the nursery for the world's most daring approach to mobile OSs.
+
+p<>. Nokia's first tablet was the "N770":http://en.wikipedia.org/wiki/Nokia_770_Internet_Tablet, launched in 2005. It was barely a blip in the radar, and a complete geek toy. It had no cellular capabilities whatsoever, but served as a test, and Nokia's feedback from its early adopters surely shaped things to come. It was followed by the "N800":http://en.wikipedia.org/wiki/Nokia_N800 in January 2007, the "N810":http://en.wikipedia.org/wiki/Nokia_N810 (one edition was the world's first Wi-MAX consumer product) in October 2007 and finally the N900 in November 2009. All through this time, Nokia's staff grew more and more comfortable with building upon open-source efforts, and enhancing several projects by contributing with patches to several popular projects (GTK, most notoriously). During this time, however, the landscape of the smartphone market was radically altered.
+
+h4. The iPhone
+
+p<>. Apple's bombshell on the market was a truly disruptive one. It sold unprecedented numbers of units over weekends in which people would camp out and do other crazy things by their stores. It brought about The Age Of Touch, exactly the area in which Nokia had been completely lacking. Apple's approach to their products may strip you of liberties taken for granted (changing a ringtone for one in your memory card) and even lack MMSs or copy-pasting of text, but their numbers show people don't care about the specifics, they care about whole experiences and in that aspect the iPhone (and iPod Touch) delivers a unique one.
+
+h4. Android
+
+p<>. Another big contender, and an almost logic followup to Google's quest for mapping all of the world's knowledge (and personal data). We must realize here that Google is an advertising company first, and a search mogul second. And what better way to show _meaningful_ ads, which are obviously the ones companies will hire most, than by tracking their users every move online? Apple's launch of the iPhone platform showed a new player could make considerable progress in terms of market share in a very short time, and Google (rightfully so) thought they could be just as innovative.
+
+p<>. First step - use Linux. It's free, and Google already has tons of experience patching it for their own servers. Step two: leverage an existing language, like Java. Oh wait... Java VMs must be licensed from Sun! Never mind, we'll write one that can execute modified (by us) Java bytecode and run on our phones - let's call it "Dalvik":http://en.wikipedia.org/wiki/Dalvik_virtual_machine. Step three: create a completely new desktop, so our apps can't run easily on traditional Linux desktops. Step four: ??? Step five: profit! :D As you can tell, I'm not the biggest fan of Android. It lacks a coherent strategy (Google helps manufacturers, then competes with them), the source is open but sometimes "private", more advanced branches are withheld from the public for weeks, and Google's contribution to the remaining open-source ecosystem is minimal, since all the code except kernel drivers is of worth only to their own platform.
+
+h4. Microsoft
+
+p<>. Yes, they're still around. No one seems to care, though, so I won't even mention them. Maybe if Windows Mobile 7 does break away compatibility with Mobile 6.x, I'll renew my faith in MS for taking such a gutsy move and just let WinMo 6 die its deserved horrible death.
+
+h4. Research In Motion
+
+p<>. The Blackberry platform is very successful, and I can't understand why. I mean, there's push email on Windows Mobile too. There are virtually no extra apps for them. Development for the platform is a horrible mess. The handsets are expensive and require a subscribed service. Where *is* the appeal? Guess I'll never get it.
+
+h4. &nbsp;
+
+p<>. There are other factors here affecting the whole of the SmartPhone Wars, like Apple and Google's imminent clash (there's even talk of Apple replacing Google with Bing as the default search engine for Mobile Safari) but I guess that will be for another post.
+
+h4. &nbsp;
+
+h3. The Device
+
+Enough context, let's get down to it.
+
+p<>. The N900 is powered by a Cortex A8 CPU from ARM, clocking in at 600Mhz, sidekicked by an OpenGL ES 2.0-compliant 3D board and a 430Mhz DSP, for media decoding. It packs 256MB of mobile DDR, and 32GB of flash storage. It has 3.5G capability (HSPA), Bluetooth, GPS, FM Radio and FM transmitter, TV-Out, WiFi (802.11g) support, and even an infrared port. The camera is 5Mpx with Carl Zeiss Tessar lens and dual LED flash. The screen is 800x480, and the browser is based on Firefox and can run Flash 9.4 content.
+
+
+p=. !/images/n900.jpg!
+
+p<>. Part of the flash storage is taken for swap purposes (768MB). Also, the main core of the OS installation (/ partition) is stored in a separate, ultra-fast oneNAND Samsung chip. Fast flash is however not cheap, so this chip is only 256MB, which poses some problems for application installation if they're not properly packed. Quite simply, you can run out of app storage space! However, properly packed programs will install only symlinks on the / partition and the main files in the 32GBs of flash, a process called "optification". Prototype applications in the -extras-devel or -extras-testing channels of Maemo are not usually optimized in this way, and so if you run on the bleeding edge you may find yourself needing a severe cleanup from time to time. But I'm getting ahead of myself.
+
+p<>. The desktop experience is very different from what you may expect from a mobile phone. For one, it runs X11. Yes, the same protocol that governs a normal desktop Linux screen interaction is the same as you're running on your phone. This means that you can run apps on the N900 and output them to your desktop PC or laptop running X (or vice-versa), and someone can port Compiz to the N900 and you get wobbly windows.
+
+p=. !/images/n900_sshot_1.png!
+
+p<>. There are 4 virtual "desktops" that you can scroll to, and they wrap around. You can only place one copy of a widget, so if you have a Facebook widget installed, you can't have two of them running (makes sense for Facebook, but for other kind of widgets it would be handy). You can also place a shortcut for an app or any contact in your contact list directly on the desktop.
+
+p<>. Underneath, it's Debian all the way down. You can even install either a Debian chroot, or dual boot (from MicroSD) another OS like the "Mer":http://wiki.maemo.org/Mer distribution that is more tightly connected to Debian roots (think of it like Maemo without Nokia's input). There's even an Android port in the works, but key hardware components in the N900 (GPS, cellular radio) are closed source by Nokia to prevent easy tampering with cellphone or satellite positioning networks, so I doubt the port would be useful - still kinda neat.
+
+p=. !/images/n900_sshot_2.png!
+
+p<>. The Contacts app is very nicely done.
+
+p=. !/images/n900_sshot_3.png!
+
+I have setup, along with my Vodafone SIM card, my Skype, Google Talk and Gizmo5 VoIP accounts, and for each contact now that is also present on Skype and Google talk, in this screen I have the possibility of:
+
+# Calling them
+# Sending them a SMS
+# IM-ing them via Skype
+# Calling them via Skype
+# IM-ing them via Google Talk
+# Calling them via Google Talk
+# Calling them via SIP
+# Emailing them (if set, or to the Google Talk one)
+# Navigating to their coordinates (if set or harvested from Facebook)
+# Checking their birthday (if set or harvested from Facebook)
+# Browsing their personal webpages (if set or harvested from Facebook)
+
+All on the same screen. Google Talk and Skype are not "hacked-in", they're just standard plugins that get integrated in the Maemo Contacts UI. There are plugins in -extras-devel right now for Yahoo! Messenger, MSN, IRC, Twitter, and a few others. When installed, the relevant protocol data (IM, email, voice conversation, whatever) is added here. As for the conversations:
+
+p=. !/images/n900_sshot_4.png!
+
+p<>. You can reply via SMS to a Google Talk IM, or reply via Skype call to an SMS - and the timeline for that contact is never broken, just decorated with different protocol icons. Brilliant. Oh, and as a bonus, all you see inside the app window on the screenshot is customizable via HTML/CSS, right down to the smileys and you can even add new smileys to be recognized.
+
+p<>. All this typing is very well served by the keyboard. I have typed a lot in it these last few days and have missed a key once or twice. The embossing of the keys is very helpful to guide your thumbs. However, it's only three rows high, so it's kinda cramped (but very doable, anyway) and... some tough choices had to be made by Nokia. One of them is not having the full set of cursor keys for the Portuguese layout version. You get a dedicated key to &ccedil; and &ntilde;, but "Up" and "Down" are only accessible as Fn+"Left" and Fn+"Right" out of the box, respectively. This sucks a bit, but I understand it (you also get a lot of Portuguese specific keys for accentuation and so on). Since it's only a plastic membrane anyway, you can change the keyboard layout in the Settings to the US one and just live with it, or even order the US plastic membrane and apply it at a Nokia Service Centre if you really need. For me, the only gripe is that some apps _assume_ you have the US keymap, and so your cursor input gets all screwy. Still, like in many things in Maemo, you can "customize the keyboard mappings":http://blogs.igalia.com/berto/2009/12/17/remapping-the-n900-arrow-keys/.
+
+p<>. One other example of customization is the notifications LED. Out of the box, Nokia allows you to turn notifications on or off separately for missed calls, emails, IMs, SMSs, USB charging, etc.. However, all these notifications are the same color by default (blue) with no way to change it! Digging a little in the forums shows that the colours are actually controlled by a kinda-simple .INI file. Here's a sample:
+
+bq. PatternCommunicationIM=30;1;0;b;9d80400002ff03ff02ff03ff71080000;9d800000
+
+p<>. The contents of the line are fully explained in the rest of the file. By changing the 'b' in this line to 'rg' for example, you'll mix the red and green channels of the multi-color led. So, to obtain white for example, it would be 'rgb'. Precise hex-code value control is possible, as is controlling the pattern (blink once, n times, or indefinitely) and when the notification shows (which profiles can show it, when the device is locked or not). I have *never* seen this degree of customization in a consumer device. I promptly changed the colors of al the notification, according to what triggers them.
+
+p<>. It is a powerful device:
+
+p=. <object width="640" height="505"><param name="movie" value="http://www.youtube.com/v/pSgjjt2TCqM&hl=en_US&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/pSgjjt2TCqM&hl=en_US&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="505"></embed></object>
+_Quake 3_
+
+p=. <object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/V6JfxdWg0HI&hl=en_US&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/V6JfxdWg0HI&hl=en_US&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
+_Bounce Evolution_
+
+p<>. One other cool thing about the phone is that the camera does not suck terribly (even has flash), and video captures are in high resolution (840*480 px at 25 fps). Sharing captured media is very simple - similarly to the conversation providers, you can have sharing providers. Right now, I have Evernote, Facebook and Pixelpipe (which propagates the data to other services) just a tap of the screen away.
+
+p=. <object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/XX20TCFyoRo&hl=en_US&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/XX20TCFyoRo&hl=en_US&fs=1&rel=0&color1=0x3a3a3a&color2=0x999999&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
+
+p<>. Another, very cool point, is the browser! The default one, MicroB, is based on Mozilla's Gecko rendering engine (from Firefox 3.5) and *all* websites look like in its desktop counterpart. Flash 9.4 is a bonus.
+
+p=. !/images/n900_sshot_5.png!
+
+p<>. You can even install standard Firefox addons (like Adblock and Echofon) although Nokia does not recommend this. Anyway, there's also Fennec (Firefox Mobile), Midori and Tear (WebKit based) as possible browser options for you to install. Unfortunately, my two favorite browsers do not allow for any font customization whatsoever.
+
+p<>. The N900 is also a multi-tasking monster. Here's me running 12 apps:
+
+p=. !/images/n900_sshot_6.png!
+
+p<>. They all spawn *very* quickly, and I'm not running more here because they won't fit the screen! :) All task thumbnails are live, so if you're watching a movie and alt-tab (or, in the N900 parlance, ctrl-backspace) the movie keeps playing.
+
+p<>. Quick words about the GPS - it works only with a data connection now, you can download the maps with Ovi Maps Loader and load them on to the N900 for caching purposes and turn-by-turn navigation for free, a la Android, is coming later this year.
+
+h3. The "Ecosystem"
+
+p<>. The App Store equivalent in Maemo's world is hard to point at. There's Ovi Store, which already features some (few) N900 apps, like the great "Angry Birds":http://dailymobile.se/2009/12/10/angry-birds-coming-soon-to-nokia-n900-and-iphone-in-game-trailer/ but most of the apps will probably come from Maemo's APT repositories (with some extra goodies in the -devel channel). But you can even install .deb files in the terminal (yes, root access is allowed by Nokia).
+
+p<>. As for development, the SDK for Maemo 5.0 is still not in its final release, but already under fire from some developers for being very similar to the SDK for Maemo 2.0, as some packages like autotools and GCC are lagging behind in relation to their upstreams. And who wants to develop with Makefiles in the XXI century? Luckily, just today, Nokia released some templates to kickstart development in an easier fashion ("MADDE":http://maemoteam.wordpress.com/2009/12/22/a-small-presentpreview-from-the-developer-platform-team/). For what it's worth, I was able to port 99% of "this":http://studiostok.se/?page=netnuclear in 20 minutes, there's just a mouse pointer issue pending. Since the N900 is a computer basically, and the Nokia firmware carries the full compliment of SDL libs (main, net, mixer, image) a *lot* of Linux desktop games are almost a recompile away (that's basically what I did - fire up the SDK, switch gcc to the ARMEL instead of X86 target, and type 'make'). Packaging and distribution issues aside, development is a breeze if you have Linux experience (gcc, autotools, makefiles) but some are complaining it's too cryptic. There's also a full set of Python bindings to please the C-POSIX-haters.
+
+h3. My overall impression
+
+p<>. The N900 is a monster. A nice computer, with some nice phone features. The battery life is tremendous, and running X11 and ssh in the palm of my hand makes me feel all fuzzy inside. However, Nokia should have never marketed it as a phone. Masses will flock and, inevitably in this case, run away ASAP. The general public does not care about the features that attract me, as a geek, and will probably be pissed of paying 500&euro; for a phone that can't do video calls, MMSs or be used in portrait orientation (except for the browser and phone dialing apps) or even voice-dialling. There's even a long-standing bug that prevents users from sending GSM shortcodes (like *#100# to check your account credit).
+
+p<>. Still, the bug reporting process is open, and Nokia is listening ("but experiencing serious community overload":http://tabulacrypticum.wordpress.com/2010/01/20/maemo-org-growing-pains/) and I want to believe that Maemo, as a community, can live through this. Most people will shy away from the N900, however, and possibly even spread negative word-of-mouth, and especially after the N97 debacle in the UK, this can be a potencial PR disaster for Nokia.
+
+p<>. I am *very* happy with my purchase, and this is likely going to be my phone for the next 2 / 3 years with no compromises. I wish Nokia wouldn't have marketed so it won't be "tainted" by negative word-of-mouth in the near future. I already love it - and it's only firmware 1.1!
+
+h3. The Future
+
+p<>. The N900 is step 4 of 5 for Nokia's -world domination- widespread adoption of the Maemo platform in their product lines, quoting the company's CEO. It is a half-baked product, for some, and a wonderful experimental device for others. But it is also something else - an empowering phone. You're not locked to a company's UI, you have 4 desktops and a free pass to do whatever. You can even dual boot it[1]! I do not believe this freedom will always be present. In fact, I believe Maemo 6 (to debut this year, reportedly, on a keyboard-less version of the N900 with a capacitive multi-touch display, the N920) will be very much locked down in the number of repositories and interface options, being mass-market and all. So, in a way, the N900 could be Maemo's most interesting device for hackers in the foreseeable future. But maybe I'm wrong and Nokia will truly set us free in a free Linux X11 desktop, no limits set, a vision worthy of Stallman itself (if I only agree to call it GNU/Linux)!
+
+p<>. This whole approach is also a far-cry from Apple's mantra of releasing finished goods that you can buy on the day of the keynote event. Nokia is basically beta-testing their ideas for 4 years now, and still there's no visible mass-market outlet for Maemo in sight (maybe it's the N920, but it's not confirmed). I wish Nokia would be braver in their products and would just go "here. this is the best we can do. buy it, it's safe to." but a market leader has some image issues to account for in case something goes wrong. And we can't all be Apple :) .
+
+fn1. _update - Android (Donut) is reportedly "booting already on the N900":http://talk.maemo.org/showthread.php?p=489439#post489439_
+
+

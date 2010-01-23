@@ -7,20 +7,21 @@ task :default => :upload
 
 #desc 'create new post'
 task :post, :title do |task, args|
-	title = args[:title]
+	raise "please indicate post title with title=<...>" if args[:title].nil?
+	title = args[:title].gsub(' ','-')
 	
-	puts "creating new post #{title[1,title.length].gsub('-',' ')}"
+	puts "creating new post #{title}"
 	
 	now = Time.now
 	
-	filename = now.year.to_s + '-' + now.month.to_s + '-' + now.day.to_s + title + '.textile'
+	filename = now.year.to_s + '-' + now.month.to_s + '-' + now.day.to_s + '-' +  title + '.textile'
 	
 	File.new( '_posts/' + filename, 'w')
 	
 	File.open( '_posts/' + filename, 'w') do |file|
 		file.puts "---"
 		file.puts "layout: post"
-		file.puts "title: #{title[1,title.length].gsub('-',' ')}"
+		file.puts "title: #{title.gsub('-',' ')}"
 		file.puts "tags: [random]"
 		file.puts "author_name: Bruno A"
 		file.puts "author_uri: http://twitter.com/sardaukar_siet"
@@ -70,7 +71,7 @@ task :upload do
 			
 			puts "\nremoving local files"
 			
-			["Rakefile","iruel.net.kpf","README.textile","host.yml","new_post","new_post.cyg.sh"].each {|e| puts "\tdeleting #{e}"; File.delete e }
+			["Rakefile","iruel.net.kpf","README.textile","host.yml"].each {|e| puts "\tdeleting #{e}"; File.delete e }
 			
 			puts "\ninitiating upload..."
 			
