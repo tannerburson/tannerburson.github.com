@@ -1,9 +1,0 @@
----
-layout: post
-title: First Post!
-tags: [random]
-author_name: Bruno A
-author_uri: http://twitter.com/sardaukar_siet
----
-
-<p>I've moved from Wordpress to Jekyll, and I'm using a <a href="http://jduff.github.com">template</a> to kick things off. Over time, I'll be updating this with my own personal style! :)</p>

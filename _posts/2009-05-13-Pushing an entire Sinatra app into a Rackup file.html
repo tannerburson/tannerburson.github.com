@@ -1,0 +1,8 @@
+--- 
+permalink: /2009/05/pushing-entire-sinatra-app-into-rackup.html
+layout: post
+title: Pushing an entire Sinatra app into a Rackup file
+tags: 
+- but why? sinatra is cool
+---
+The title pretty much says it all.  This is a pretty pointless thought experiment inspired by <a href="http://devver.net/blog/2009/05/single-file-sinatra-apps-with-specs-baked-in/">this post</a> by the guys at <a href="http://devver.net/">devver</a>.  They came up with a simple way to put both a sinatra application AND it's tests into a single file.  Nothing TOO crazy, but definitely cool.<br /><br />Not satisfied with simple and effective, I went to complete overkill.  I put together a way to not only embed a sinatra app and it's tests into a single file, but for that file to be a rackup compliant file.  Also, as a pointless but neat bonus, I forced the tests to run before successfully before the app can start.  What's the point? I don't really know, but it seemed cool so I thought I'd share.  And no, I'm not using this anywhere, I don't think.<br /><script src="http://gist.github.com/111268.js"></script>

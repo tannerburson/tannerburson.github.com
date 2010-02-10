@@ -1,11 +1,7 @@
-h2. iruel.net
+h2. tannerburson.com
 
-This is the source for my personal blog and showcase on the internets, "iruel.net":http://iruel.net. It is heavily based on jduff's "Jekyll":http://github.com/mojombo/jekyll/ configuration (Jekyll is a static site generator) and includes a set of rake tasks to automate deployment via SFTP to my "web host":https://www.nearlyfreespeech.net/, which I highly recommend, but it's generic enough to work with any SSH/SFTP-enabled webhost. 
+Blogger is finally discontinuing their FTP upload service.  So it's time to move on.  I like not having to host a database, and a bunch of dynamic scripts.  I like the idea of using my favorite coding tools to write my blog.  I found that Jekyll fits this very odd niche extremely well, so I set off to find a good jumping off point.
 
-Over time, it will (I guess) diverge more in terms of look, and I'll be adding some more pages.
+This instance is a fork of "iruel.net":http://github.com/sardaukar/iruel.net, which is in turn based on jduff's "Jekyll repo":http://github.com/mojombo/jekyll.
 
-h3. host.yml
-
-The webhost SSH connection info is stored in a YAML file called *host.yml*, and should be self explanatory - the 'pass' key is optional, if it's not present you'll be prompted for the SSH password on every upload task call.
-
-All code is MIT licensed (as Jekyll), but content under the *_drafts* and *_posts* folders is (c) 2009 Bruno Antunes.
+Over time, it will diverge more in terms of look, and I'll be adding some more pages.

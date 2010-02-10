@@ -4,8 +4,8 @@ layout: nil
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>iruel.net</title>
-    <link href="http://iruel.net/atom.xml" rel="self"/>
-    <link href="http://iruel.net/"/>
+    <link href="http://tannerburson.com/atom.xml" rel="self"/>
+    <link href="http://tannerburson.com/"/>
     <updated>{{ site.time | date_to_xmlschema }}</updated>
     <id>http://iruel.net/</id>
     
@@ -15,7 +15,7 @@ layout: nil
         {% for category in post.categories %}
         <category term="{{category}}" scheme="http://www.sixapart.com/ns/types#tag" />
         {% endfor %}
-        <link href="http://iruel.net{{ post.url }}"/>
+        <link href="http://tannerburson.com{{ post.url }}"/>
         <updated>{{ post.date | date_to_xmlschema }}</updated>
         <id>iruel.net:{{ post.id }}</id>
         <content type="html"><![CDATA[{{ post.content }}]]></content>

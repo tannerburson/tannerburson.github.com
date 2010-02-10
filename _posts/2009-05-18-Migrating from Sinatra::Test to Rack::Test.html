@@ -1,0 +1,10 @@
+--- 
+permalink: /2009/05/migrating-from-sinatratest-to-racktest.html
+layout: post
+title: Migrating from Sinatra::Test to Rack::Test
+tags: 
+- rack
+- sinatra
+- tests
+---
+After seeing the <a href="http://groups.google.com/group/sinatrarb/browse_thread/thread/4960b95298c86a5d?pli=1">release of Sinatra 0.9.2</a> mention (again) that Sinatra::Test would vanish by 1.0, I decided to get with it and move to Rack::Test.  It was really pretty painless and my tests were forced to become a bit more explicit (still not convinced I really LIKE this).  Since I found a few bits of fun along the way I thought I'd share.<br /><br />I use Test::Spec so some of this may not apply, or may look a bit 'off' to you, but I think the point should be clear.<br /><script src="http://gist.github.com/113727.js"></script><br /><br />Anywhere you're using @response/response, or @request/request you need to change to last_response or last_request.<br /><br />Anywhere you were checking a redirect URL, you now need to check for a full hostname not a relative path.  The default hostname for requests is http://example.org.<br /><br />Also be aware that that Rack::Test tracks cookies.  I haven't looked heavily into what that will mean in practice, but if you were manually twiddling the cookies around, you need to look into the CookieJar and how it may affect what you're doing.<br /><br />That's all that I ran into when moving my tests over.  What did you find?

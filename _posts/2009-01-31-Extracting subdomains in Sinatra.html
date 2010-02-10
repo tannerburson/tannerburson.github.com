@@ -1,0 +1,9 @@
+--- 
+permalink: /2009/01/extracting-subdomains-in-sinatra.html
+layout: post
+title: Extracting subdomains in Sinatra
+tags: 
+- ruby
+- sinatra
+---
+As part of my <a href="http://blog.tannerburson.com/labels/sinatra.html">continuing education in Sinatra</a>, I decided to learn how Sinatra handles subdomains.  It turns out that neither Rack, nor Sinatra seem to have any native subdomain handling code.  So I took a quick stab at it.  <br /><br /><script src="http://gist.github.com/55784.js"></script><br /><br />The easiest method I could come up with was simply to re-open the Rack::Request class and add a subdomain method.  The method implementation is adapted from Rails, except with Rack style caching.<br /><br />To test this you will need modify your hosts file with something like:<br /><pre><br />127.0.0.1    sample.test.dev<br /></pre><br /><br />Then after running the above script, use the url http://sample.test.dev:4567.  You should see just the word "sample" as the output.<br /><br />I'm not sure that this is the <span style="font-style:italic;">best</span> method, but seems to work for now.

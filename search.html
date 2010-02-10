@@ -4,12 +4,14 @@ title: Search Results
 ---
 
 
-<div id="cse-search-results"></div>
+<div id="cse" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript">
-  var googleSearchIframeName = "cse-search-results";
-  var googleSearchFormName = "cse-search-box";
-  var googleSearchFrameWidth = 700;
-  var googleSearchDomain = "google.com";
-  var googleSearchPath = "/cse";
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function(){
+    var customSearchControl = new google.search.CustomSearchControl('016701940628147216844:breo-cev7gs');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+  }, true);
 </script>
-<script type="text/javascript" src="http://www.google.com/afsonline/show_afs_search.js"></script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
