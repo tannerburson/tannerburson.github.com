@@ -23,8 +23,8 @@ task :post, :title do |task, args|
 		file.puts "layout: post"
 		file.puts "title: #{title.gsub('-',' ')}"
 		file.puts "tags: [random]"
-		file.puts "author_name: Bruno A"
-		file.puts "author_uri: http://twitter.com/sardaukar_siet"
+		file.puts "author_name: Tanner Burson"
+		file.puts "author_uri: http://twitter.com/tannerburson"
 		file.puts "---"
 		file.puts ""
 	end
