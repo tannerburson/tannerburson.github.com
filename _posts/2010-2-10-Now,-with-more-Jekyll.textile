@@ -1,0 +1,13 @@
+---
+layout: post
+title: Now, with more Jekyll
+tags: [jekyll, pointless]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+---
+
+Apparently Google is "abandoning FTP support":http://blogger-ftp.blogspot.com/ for Blogger blogs this next month. As I'm sure none of you were aware, this blog was hosted via that service.  Instead of waiting until the service went away and then cursing loudly, and flailing my way into a new blog platform, I got proactive, and made the move over a month ahead of time.
+
+Being a geek of epic proportions, I couldn't just use Wordpress or something similar.  No, I needed to find something esoteric, complex, hackerish.  And I found exactly what I was looking for in "Jekyll":http://jekyllrb.com. It's a Ruby based static blog engine with a *strong* preference for being under version control. This means that the same tools I use to code, are the same ones I use to blog.  Kick.  Ass.
+
+Coming up next will be a post detailing how I've got this setup (hint, checkout "my github projects":http://github.com/tannerburson/blog.tannerburson.com)!
