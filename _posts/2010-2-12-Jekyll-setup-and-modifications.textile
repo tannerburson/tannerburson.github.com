@@ -1,0 +1,14 @@
+---
+layout: post
+title: Jekyll setup and modifications
+tags: [random]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+published: false
+---
+
+Now that we've established that this blog is now running on Jekyll, let's get down to the business of looking at the setup of Jekyll, and the customizations that I've made.
+
+For starters I took an existing published setup, and used it as my base instead of a vanilla Jekyll install.  The particular setup I used was "iruel.net":http://github.com/sardaukar/iruel.net, by "Bruno Antunes":http://twitter.com/sardaukar_siet. You can check out his repo for the list of changes over vanilla Jekyll, but they're fairly basic.  The majority of his enhancements revolve around Rakefile tasks to fit his deployment system.  I wanted a different setup, so I ended up removing most of it.
+
+"The next step":http://github.com/tannerburson/blog.tannerburson.com/commit/56829087c604d2c3d4d2d19ffb245afc7178ddb6 was to remove the files and posts that were already there (ignore the adds for now).  After that, it's time to get to work.  I didn't want to just start from scratch, I wanted to import my existing blog posts first.  So I went into the Jekyll repo to look at the converter options.  Jekyll currently
