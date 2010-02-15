@@ -1,11 +1,33 @@
 require 'rake'
-require 'net/sftp'
 require 'fileutils'
 require 'yaml'
 
-task :default => :upload
+task :publish do |task, args|
+  raise "please indicate post title with title=\"....\"" if args[:title].nil?
+  title = args[:title].gsub(' ','-')
+  Dir['_posts/*'+title+'*.*'].each do |f|
+	puts "marking #{f} for publish..."
+	post = nil
+	File.open(f) do |p|
+	  post = p.readlines
+	end
+	in_yml = false
+	File.open(f,'w') do |p|
+	  post.each do |line|
+		in_yml = !in_yml if "---" == line.chomp.strip
+		p.puts line unless (in_yml && "published: false" == line.chomp.strip)
+	  end
+	end
+	now = Time.now
+	parts = f.split('-')
+	last = parts[3,parts.length].join("-")
+	new_f = "_posts/" +now.year.to_s + '-' + now.month.to_s + '-' + now.day.to_s + '-' + last
+	FileUtils.mv f, new_f if f != new_f
+	puts "published #{f} as #{new_f}"
+  end
+end
 
-#desc 'create new post'
+#desc 'create new draft post'
 task :post, :title do |task, args|
 	raise "please indicate post title with title=<...>" if args[:title].nil?
 	title = args[:title].gsub(' ','-')
@@ -25,11 +47,17 @@ task :post, :title do |task, args|
 		file.puts "tags: [random]"
 		file.puts "author_name: Tanner Burson"
 		file.puts "author_uri: http://twitter.com/tannerburson"
+		file.puts "published: false"
 		file.puts "---"
 		file.puts ""
 	end
 	
 	puts "\npost created, filename is _posts/#{filename}"
+end
+
+desc 'List all draft posts'
+task :drafts do
+    puts `grep -l 'published: false' _posts/*`
 end
 
 desc 'generate static content'
@@ -40,69 +68,4 @@ end
 desc 'purge generated site'
 task :purge do
   FileUtils.rm_rf '_site'
-end
-
-desc 'upload to NFS'
-task :upload do
-	
-	conf = YAML.load(IO.read('host.yml'))
-
-	USERNAME = conf['host']['user']
-	HOST = conf['host']['url']
-	REMOTE_ROOT = conf['host']['root']
-	print "SSH password: " unless conf['host'].has_key?('pass')
-	PASSWORD = conf['host'].has_key?('pass') ? conf['host']['pass'] : STDIN.gets.strip!
-	
-	_start = Time.now
-	
-	puts "\ndeleting generated site"
-	Rake::Task['purge'].execute
-	
-	puts "\ngenerating site"
-  Rake::Task['generate'].execute
-    
-  Dir.chdir('_site')
-
-	Net::SSH.start(HOST, USERNAME, :password => PASSWORD ) do |ssh|
-		puts "\nSSH login successful!"
-		
-		ssh.sftp.connect do |sftp|
-			puts "SFTP login successful!"
-			
-			puts "\nremoving local files"
-			
-			["Rakefile","iruel.net.kpf","README.textile","host.yml"].each {|e| puts "\tdeleting #{e}"; File.delete e }
-			
-			puts "\ninitiating upload..."
-			
-			FileList['**/*'].each do |file|
-				if File.directory? file
-					puts "\tcreating dir #{file}"
-					begin
-						sftp.mkdir! REMOTE_ROOT + file
-					rescue Net::SFTP::StatusException
-						puts "\tWARNING: removing #{file}"
-						ssh.exec! 'rm -Rf ' + REMOTE_ROOT + file
-						retry
-					end
-				else
-					puts "\tuploading file #{file}"
-					begin
-						sftp.upload! file, REMOTE_ROOT + file
-					rescue Net::SFTP::StatusException
-						puts "\tWARNING: removing #{file}"
-						ssh.exec! 'rm -Rf ' + REMOTE_ROOT + file
-					end
-				end
-			end
-
-		end
-	end
-	
-	Dir.chdir('..')
-		
-	puts "\ndeleting generated site"
-	Rake::Task['purge'].execute
-	
-	puts "\ndone! (in #{(Time.now - _start).to_s} seconds)"
 end
