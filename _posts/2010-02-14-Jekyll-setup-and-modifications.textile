@@ -4,7 +4,6 @@ title: Jekyll setup and modifications
 tags: [jekyll, ruby, awesome]
 author_name: Tanner Burson
 author_uri: http://twitter.com/tannerburson
-published: false
 ---
 
 Now that we've established that this blog is now running on Jekyll, let's get down to the business of looking at the setup of Jekyll, and the customizations that I've made.
