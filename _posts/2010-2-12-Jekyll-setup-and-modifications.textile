@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Jekyll setup and modifications
-tags: [random]
+tags: [jekyll, ruby, awesome]
 author_name: Tanner Burson
 author_uri: http://twitter.com/tannerburson
 published: false
@@ -11,4 +11,14 @@ Now that we've established that this blog is now running on Jekyll, let's get do
 
 For starters I took an existing published setup, and used it as my base instead of a vanilla Jekyll install.  The particular setup I used was "iruel.net":http://github.com/sardaukar/iruel.net, by "Bruno Antunes":http://twitter.com/sardaukar_siet. You can check out his repo for the list of changes over vanilla Jekyll, but they're fairly basic.  The majority of his enhancements revolve around Rakefile tasks to fit his deployment system.  I wanted a different setup, so I ended up removing most of it.
 
-"The next step":http://github.com/tannerburson/blog.tannerburson.com/commit/56829087c604d2c3d4d2d19ffb245afc7178ddb6 was to remove the files and posts that were already there (ignore the adds for now).  After that, it's time to get to work.  I didn't want to just start from scratch, I wanted to import my existing blog posts first.  So I went into the Jekyll repo to look at the converter options.  Jekyll currently
+"The next step":http://github.com/tannerburson/blog.tannerburson.com/commit/56829087c604d2c3d4d2d19ffb245afc7178ddb6 was to remove the files and posts that were already there (ignore the adds for now).  After that, it's time to get to work.  I didn't want to just start from scratch, I wanted to import my existing blog posts first.  So I went into the Jekyll repo to look at the converter options.  Jekyll currently supports importing from CSV, Mephisto, MT, Textpattern, Typo and WordPress.  That's quite a few options, and certainly should cover a ton of folks, but not me.  As previously mentioned though I need to be able to import from Google Blogger, which means I need to get busy. Blogger luckily provides an XML based export file of an entire blog.  I just needed to import posts, I ignored all of the stored settings and comments.  I spent a couple of hours reading through the export file, and hacking up some "really simple code":http://github.com/tannerburson/jekyll/blob/09ba5d11d6afa6f81bae8d3db75388d6b1ca7ce1/lib/jekyll/converters/blogger.rb to handle the import. 
+
+Currently the code supports importing all blog posts, their published date, permalink (which is stripped to just the path), and the posts tags.  All of this is able to be imported cleanly into Jekyll, which is awesome. Next I decided to make a few tweaks to my workflow. 
+
+I'm a slow writer.  Really slow.  I've rewritten this post at least twice by the time you read it.  If you look into my repo, you'll probably see that it's been in a draft status for longer than I'd care to know.  Because of that I need to be able to easily manage draft posts.  I decided that the easiest way to handle this would be through a few simple Rake tasks.  I went on and "modified the existing Rakefile":http://path/to/rakefile/patch, to add two tasks (drafts and publish), and modify the 'post' task.  First I modified the 'post' task to create the post with 'published' set to 'false' which prevents Jekyll from generating an HTML file for that particular textile file. Next the 'publish' task goes in, removes this flag, and changes the file name to be the current date.  This way the post's date is current. The 'drafts' task is really simple, it just lists all the posts that are still un-published.
+
+The last, but to me most important, part of my customization is my deployment process.  To deploy my blog, I simply have to push into my github repository, nothing more.  In github I setup a post-receive hook, that calls a script on my site, that has permission to run a ruby deployment script serverside.  That script uses "my deployment script dsl":http://github.com/tannerburson/deployscript/blob/master/examples/local.rb, to move the current site to a backup folder (just in case), create a new directory, clone the github repository, and then run jekyll. This seems complicated but with the deployscript dsl, it's only a few lines of code.
+
+<script src="http://gist.github.com/304394.js"></script>
+
+This means in one evening I was able to setup Jekyll, customize it, write an importer for my previous blog, and import it, and deploy it all to my server.  Not bad, not bad at all.
