@@ -1,0 +1,26 @@
+---
+layout: post
+title: Web Security testing with skipfish
+tags: [random]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+published: false
+---
+
+Web App Security - an intro
+
+Tools like "Nikto":http://cirt.net/nikto2 and "Nessus":http://www.nessus.org/nessus/ are great at scanning the underlying web server platform (IIS, Apache, etc), and in some cases identify some commonly known exploits.  But they aren't designed to scan a running web application for unique attack vectors.
+
+In modern web applications there is an an alphabet soup of acronyms to keep in mind when writing your code, SQL injection, XSS, XSRF, SSL, just to name the common ones. SQL injection attacks tend to "make":http://www.pcworld.com/businesscenter/article/146048/mass_sql_injection_attack_targets_chinese_web_sites.html "big":http://thedailywtf.com/Articles/Oklahoma-Leaks-Tens-of-Thousands-of-Social-Security-Numbers,-Other-Sensitive-Data.aspx "news":http://news.bbc.co.uk/2/hi/americas/8206305.stm , but due to their publicity are also the most commonly secured vulnerabilities.  There is tons of "documentation on preventing sql injection":http://www.google.com/search?sourceid=chrome&ie=UTF-8&q=preventing+sql+injection but significantly less on properly handling XSRF and XSS attacks.  
+
+First some definitions, according to <a href="http://www.owasp.org" title="The Open Web Application Security Project (OWASP)">OWASP</a> XSS is defined as 
+bq. Cross-site Scripting (XSS) attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user in the output it generates without validating or encoding it.
+
+In otherwords, XSS attacks happen whenever a site displays un-sanitized data directly.  This is without a question the most common type of attack on the internet.  Any application which takes data from the user is potentially vulnerable to this class of vulnerabilities.  Most major sites have suffered from at least a limited XSS vulnerability at some point. While they are extremely common, they aren't easy to predict, or find. Even finding solid tools for auditing your own applications has been difficult until recently.
+
+The other class of attacks I want to look at are the even less well known XSRF vulnerabilities.  Again to <a href="http://www.owasp.org" title="The Open Web Application Security Project">OWASP</a> for a definition:
+bq. CSRF is an attack which forces an end user to execute unwanted actions on a web application in which he/she is currently authenticated. With a little help of social engineering (like sending a link via email/chat), an attacker may force the users of a web application to execute actions of the attacker's choosing. A successful CSRF exploit can compromise end user data and operation in case of normal user. If the targeted end user is the administrator account, this can compromise the entire web application.
+
+Again, simplified, the idea is to pick a fictional link like: http://yourapp.com/site/delete?confirm=yes, and getting a user who you suspect is already logged into yourapp.com as an administrator. This will cause them to execute an action, with valid credentials, that they were not aware they were performing.
+
+As you can see these types of attacks are non-specific and prevalent in all web applications.  So now that you've heard the bad news, it's time to get to some good news!  A new tool has been developed that makes identifying these kinds of vulnerabilities significantly easier.  That tool is called "skipfish":http://code.google.com/p/skipfish/.
