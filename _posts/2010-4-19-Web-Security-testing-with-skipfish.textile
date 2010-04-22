@@ -74,4 +74,4 @@ Just like before, once this scan completes we need to open our output directory 
 
 h3. Conclusion
 
-So there we have it, a brief run-through of a few of the stickier web app vulnerabilities, and an overview of a brand new tool to look for them! I haven't used skipfish extensively yet, but it's definitely a tool I plan to keep in my built for application testing from here on out.
+So there we have it, a brief run-through of a few of the stickier web app vulnerabilities, and an overview of a brand new tool to look for them! I haven't used skipfish extensively yet, but it's definitely a tool I plan to keep in my belt for application testing from here on out.
