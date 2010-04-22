@@ -29,7 +29,9 @@ As you can see these types of attacks are not specific to any particular web pla
 
 h2. Introducing skipfish
 
-Here's more good news, skipfish is entirely open source.  Here's the bad news, there are not (yet) pre-compiled binaries or official Windows support.  It should be possible to compile skipfish under cygwin on Windows.  But for the sake of this article we're going to assume you have access to some sort of "Debian":http://debian.org based distro (Ubuntu, Knoppix, Backtrack, etc). Now, let's get to it! Installing skipfish.
+Here's more good news, skipfish is entirely open source.  Here's the bad news, there are not (yet) pre-compiled binaries or official Windows support.  It should be possible to compile skipfish under "cygwin":http://www.cygwin.com/ on Windows.  But for the sake of this article we're going to assume you have access to some sort of "Debian":http://debian.org based distro (Ubuntu, Knoppix, Backtrack, etc). Now, let's get to it! 
+
+h2. Installing skipfish
 
 {% highlight bash %}
 wget http://skipfish.googlecode.com/files/skipfish-1.32b.tgz
@@ -40,26 +42,35 @@ make
 cp dictionaries/default.wl skipfish.wl
 ./skipfish
 {% endhighlight %}
-
 That should download skipfish, it's dependency (libidn) and then compile and run skipfish.  Obviously we haven't asked it to do much yet so you shouldn't really see a lot of useful output at the end of this.  Now it's time to get to work! I'm using skipfish to test an application I'm currently developing.  I recommend you have a local application to test against as it's significantly (almost an order of magnitude) faster to test locally than against an internet based site.  All error reports posted from here on out relate to my application, yours will obviously show different data.
 
 h3. Testing with skipfish
 
-We've got skipfish downloaded, installed, we've picked the application to test, now it's time to actually hit it and see what happens! My test application is available at http://localhost, substitute your URL where necessary.  For starters let's just hit the public face of our app.  It's possible to provide it cookie data for an authorized session and have it look at the internal pages of your app.  I'm not going to cover this use for now, but the documentation should be sufficient to get that working.
+We've got skipfish downloaded, installed, we've picked the application to test, now it's time to actually hit it and see what happens! My test application is available at http://localhost, substitute your URL where necessary.  For starters let's just hit the public facing portion of our app.  It's possible to provide skipfish cookie data for an authorized session and have it look at the internal pages of your app, which we'll look at later.
 
 {% highlight bash %}
 ./skipfish -o output -U -b i http://localhost
 {% endhighlight %}
 
-Now skipfish is off and running.  Let's look at the arguments we're giving to skipfish.  *-o output* tells skipfish where to put our output files, *-U* tells it to log any external URL's and emails found.  These might be targets for further auditing. *-b i* tells it to use a valid MSIE User Agent string when making requests.
+Now skipfish is off and running.  Let's look at the arguments.  *-o output* tells skipfish to put the results into a directory named _output_, *-U* tells it to log any external URL's and emails found (these might be targets for further auditing). *-b i* tells it to use a valid MSIE User Agent string when making requests.
 
 Depending on the speed of your test machine, the performance and size of your application, and probably a dozen other factors, it might take a few seconds, or several hours. Watch the dialog for a few minutes, gauge the amount of time you have, and then go get a soda, watch some TV, or whatever it is you do while waiting for things to finish.  We'll move on to the next step once this has finished.
 
-Whew, my scan finished, and in record time (about half an hour, there's a lot of pages!).  Now, skipfish has generated us an awesome report on what it's found, and how it ranks the severity of those findings.  To open it, browse to the output directory we specified, and open the index.html file in either Firefox or IE (there is a known issue in WebKit browsers that makes opening heavily scripted local files an issue).
+My scan finished, and in record time (about half an hour, there's a lot of pages!).  Now, skipfish has generated us an awesome report on what it's found, and how it ranks the severity of those findings.  To open it, browse to the output directory we specified, and open the index.html file in either Firefox or IE (there is a known issue in WebKit browsers that makes opening heavily scripted local files difficult).
 
-In my case it found nothing severe, but found no shortage of interesting things to look it.  Under each category it provides a link to the URL it found the issue on, as well as a "show trace" button that will provide the HTTP request/response for that request.  
+In my case it found nothing severe, but found no shortage of interesting things to look it.  Under each category it provides a link to the URL it found the issue on, as well as a "show trace" button that will provide the HTTP request/response for that request. I'm not going to get into an analysis of the results in this article as there are a large variety of potential outputs and they will vary greatly with the application being scanned.  I'll leave it as an exercise for the reader to analyze their individual results.  
 
-There is also a secret, and amazingly powerful bit of data provided with each scan output.  One of the most important and interesting aspects of skipfish is that it runs in a non-deterministic manner.  This means that each unique run of skipfish can come up with a unique set of results.  While this is great from an initial testing perspective, it makes it difficult to perform follow-up tests to confirm that issues have been fixed.  Now, that secret bit of data? In the top right of each output page is a field labelled "Random Seed".  You can feed this back into skipfish via the *-q* parameter to perform the exact same run again.
+There is though, a secret and amazingly powerful bit of data provided with each scan's output.  One of the most interesting aspects of skipfish is that it runs in a non-deterministic manner.  This means that each unique run of skipfish can lead to a unique set of results.  While this is great from an initial testing perspective, it makes it difficult to perform follow-up tests to confirm that issues have been fixed.  Now, that secret bit of data? In the top right of each output page is a field labelled _Random Seed_.  You can feed this back into skipfish via the *-q* parameter to perform the exact same run again.
+
+Now let's take a look giving it an authenticated session.  For starters I'm going to login to my local app in FireFox, and look at the cookies.  Your application's login cookies will most likely look vastly different than my own, but I've simulated those from my application below.
+
+{% highlight bash %}
+./skipfish -o authed -U -b i -C authed=true -C userid=12 -X action=logout -N http://localhost/admin
+{% endhighlight %}
+
+This time we specify a new output directory and *-o authed*, two cookies *-C authed=true* &amp; *-C userid=12*, these need to be replaced with the cookies from your application.  There can be as many of these as necessary.  We also specify a path to exclude, *-X action=logout*, this tells skipfish to ignore any URL that contains *action=logout* which in this case prevents skipfish from automatically being logged out.  Just to be double sure, we also specify *-N* which tells skipfish to ignore any attempts to delete cookies.
+
+Just like before, once this scan completes we need to open our output directory in FireFox to review the results.  Lucky for me there are again no high impact vulnerabilities to worry about, just some warnings and medium issues.
 
 h3. Conclusion
 
