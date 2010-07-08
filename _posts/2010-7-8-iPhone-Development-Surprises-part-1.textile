@@ -1,0 +1,28 @@
+---
+layout: post
+title: iPhone Development Surprises #1
+tags: [iPhone]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+published: true
+---
+
+I've recently started working on "a yet to be announced":http://www.playlookit.com/how-to-play-lookit iPhone application. This is my first serious foray into mobile development. I've written an occasional script for "ASE":http://code.google.com/p/android-scripting/ or way back in the day for my Sharp Zaurus, but nothing serious for the new breed of smartphones. This post is a simple list of surprises that I've stumbled across thus far. I'm sure many of these are documented elsewhere, but I felt like documenting them all in one place.
+
+h3. The default buttons suck
+
+*Every* app you've ever used on an iOS device, uses very little of the default graphical resources. I fully expected things like, custom backgrounds, icons and non-standard buttons. What I hadn't realized is that the default buttons are hideous, so hideous in fact that they just aren't used. At all. People have either written their own <code>UIButton</code> subclasses or used lots of custom button background images. It's still surprising that Apple doesn't provide more common styles by default. Minor problem, but certainly a big surprise when you first get going.
+
+h3. The network activity spinner is a lie
+
+The network activity spinner in the status bar is not triggered by network activity. Each application must trigger the activity spinner as necessary. Apple's HIG recommends that you only use it for long network requests. This is a _great_ recommendation, but thanks to the mobile nature of iOS devices, there is no practical way to know how long any request is going to take. This means the only safe thing to do is assume that all network requests are potentially long, and manage the spinner for all your requests. It's all of one line of code to start, or stop the spinner, so it's not a major investment, just something to be taken care of.
+
+h3. Everything blocks
+
+Coming from a background in web development, I'm very used to the idea that everything is synchronous unless I go to great lengths to make it otherwise. Objective-C and the iOS SDK are built around delegation, which looks and feels a lot like asynchronous operation. It's really easy to forget with all of the async method calling that you are still sharing a single thread with the UI. Luckily, it's not incredibly hard problem to solve when necessary thanks to the pervasive use of delegation. 
+
+It's only a few extra lines of code to turn a blocking delegate call, into a non-blocking async operation (look into <code>NSOperation</code> and <code>NSOperationQueue</code>). The more difficult part is handling this sort of thing in the UI. Should I have a modal popup with a spinner? A progress bar? Leave the UI reactive, and just update the UI as necessary? Apple leaves this entirely up to you to handle, which is probably the best, but still leaves some work on your plate.
+
+h3. EXIF data? We don't need no stinking EXIF data
+
+This one is _*HUGE*_. So you want to write an application that allows users to upload photos via the camera, or photo gallery. Excellent, me too! You want to collect some interesting usage statistics, or add an EXIF comment to the image for tracking purposes? Great idea! Too bad you can't (easily). The only supported method for accessing a user's photos <code>UIImagePickerController</code> returns a <code>UIImage</code> object that is completely devoid of meta data. Yes, that means all of the nice EXIF data, time, GPS location, flash, shutter settings, all of it are gone. The best you could do is get an EXIF library and insert a few relevant headers yourself. This is _NOT_ a technical problem, as there is code out there that can get the raw file itself, EXIF data and all. The problem is that it uses private APIs and is therefore verboten and will keep you out of the App Store. This has already caused me a ton of heartache and I foresee a lot of extra code and workarounds to get similar functionality as what would already be provided in the EXIF headers. So it goes.
