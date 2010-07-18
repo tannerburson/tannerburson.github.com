@@ -1,0 +1,44 @@
+---
+layout: post
+title: Using httpriot on IOS
+tags: [random]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+published: false
+---
+
+One of the things that surprised me when I first started with iPhone development, is how verbose the built-in classes for making HTTP requests. (see: "Using NSURLConnection":http://developer.apple.com/iphone/library/documentation/cocoa/Conceptual/URLLoadingSystem/Tasks/UsingNSURLConnection.html#//apple_ref/doc/uid/20001836-BAJEAIEE ) So I quickly started looking for a wrapper library that simplifies this process. I found two candidates "ASIHTTPRequest":http://allseeing-i.com/ASIHTTPRequest/ and "httpriot":http://labratrevenge.com/httpriot/docs/. For no reason other than some familiarity with the Ruby library that inspired it, I chose httpriot.
+
+It turned out to require a BIT more code than I had expected, so I've documented my setup, and hopefully some of my reasoning here.
+
+After making a few requests, I noticed some repeated code, which seemed ripe for abstraction. I started my abstraction by create a simple subclass of httpriot's main class, <code>HRRestModel</code>, named <code>RestRequest</code>. 
+<!-- RestRequest.h -->
+<script src="http://gist.github.com/480089.js"> </script>
+
+What this allows me to do is specify some basic authorization parameters that I want to use for most ever request. The other thing I found is that my actual View Controllers didn't end up needing to use all of the different failure and success cases that the <code>HRResponseDelegate</code> provides. So I went ahead and created my own delegate protocol, <code>RestRequestDelegate</code>. This protocol requires only two methods one for success, and one for failure.
+<!-- RestRequest.m -->
+<script src="http://gist.github.com/480095.js"> </script>
+This is the class that shows the real duplication of effort required to use <code>httpriot</code>. Notice that we have to implement five different methods to handle all of the success/failure cases. Using this subclass method, we only have to implement two per request.
+
+Some notes on the actual implementation of the <code>RestRequest</code>: You'll want to set your own <code>BaseURL</code>. You can do this per request class, or as I do here, in the main base class. At a glance right now, the <code>processResult</code> and <code>processFailure</code> methods may seem superfluous, and as of right now, they are. But their purpose is that they can be overridden in subclasses to be used in any data processing or reorganization. Also note that I go ahead and enable/disable the network activity indicator in this base class. I made the decision that I wanted the indicator to show for all HTTP requests, so I just went ahead and handled it here.
+
+Now on to a sample class that subclasses our new, simpler, <code>RestRequest</code> class. There's not really much to explain here, so I'll skip on down to the implementation class.
+<!-- GetWhatever.h -->
+<script src="http://gist.github.com/480097.js"> </script>
+
+<!-- GetWhatever.m -->
+<script src="http://gist.github.com/480099.js"> </script>
+
+The <code>fetch</code> method just takes in an object (which is our view controller in this case), and then calls the correct URL. It could also take in any HTTP parameters you need to pass, but for this example I'm not using any.
+
+We then have a simple <code>processResult</code> and <code>processFailure</code>. Again, this is a simple example, so we don't have any data processing to do, so we just call the delegate method, <code>restRequestSuccess</code> and pass it our result. Simple as can be.
+<!-- ViewControllerSample -->
+<script src="http://gist.github.com/480104.js"> </script>
+
+Now here is where we can finally see the real fruits of our labor. All of those subclasses, and delegates, and protocols, for...this. Simple, clean View controller code.  Note that we call the <code>fetch</code> method of the <code>GetWhateverRequest</code> class, and pass in <code>self</code> as the acting delegate.
+
+In our success method we take the results, look up a specific value based on a key, and set it into a label. On failure we'd probably want to show an alert or something.
+
+By this point you're probably thinking that this is a lot of work for a single http request, and you're right. On the other hand, in the app I adapted this code from, I make a dozen different requests, several of which are called from multiple places. Using this particular abstraction my View Controllers are almost entirely free of boiler-plate code, my requests are highly re-usable and portable.
+
+Hopefully this serves as a nice, albeit brief, tutorial into httpriot.
