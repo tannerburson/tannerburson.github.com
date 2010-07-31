@@ -4,18 +4,17 @@ title: Using httpriot on IOS
 tags: [random]
 author_name: Tanner Burson
 author_uri: http://twitter.com/tannerburson
-published: false
 ---
 
-One of the things that surprised me when I first started with iPhone development, is how verbose the built-in classes for making HTTP requests. (see: "Using NSURLConnection":http://developer.apple.com/iphone/library/documentation/cocoa/Conceptual/URLLoadingSystem/Tasks/UsingNSURLConnection.html#//apple_ref/doc/uid/20001836-BAJEAIEE ) So I quickly started looking for a wrapper library that simplifies this process. I found two candidates "ASIHTTPRequest":http://allseeing-i.com/ASIHTTPRequest/ and "httpriot":http://labratrevenge.com/httpriot/docs/. For no reason other than some familiarity with the Ruby library that inspired it, I chose httpriot.
+One of the things that surprised me when I first started with iPhone development is the verbosity of the built-in classes for making HTTP requests. (see: "Using NSURLConnection":http://developer.apple.com/iphone/library/documentation/cocoa/Conceptual/URLLoadingSystem/Tasks/UsingNSURLConnection.html#//apple_ref/doc/uid/20001836-BAJEAIEE ) So I quickly started looking for a wrapper library that simplifies this process. I found two candidates "ASIHTTPRequest":http://allseeing-i.com/ASIHTTPRequest/ and "httpriot":http://labratrevenge.com/httpriot/docs/. For no reason other than some familiarity with the Ruby library that inspired it, I chose httpriot.
 
-It turned out to require a BIT more code than I had expected, so I've documented my setup, and hopefully some of my reasoning here.
+It turned out to require a BIT more code than I had expected, so I've documented my setup, and hopefully some of my reasoning here. I'm probably wrong in some of this, but there's no easier way to know than to share it with the world.
 
-After making a few requests, I noticed some repeated code, which seemed ripe for abstraction. I started my abstraction by create a simple subclass of httpriot's main class, <code>HRRestModel</code>, named <code>RestRequest</code>. 
+After making a few requests, I noticed some repeated code which seemed ripe for abstraction. I started my abstraction by create a simple subclass of httpriot's main class, <code>HRRestModel</code>, named <code>RestRequest</code>. From what I gathered, this is the recommended way of using httpriot to begin with.
 <!-- RestRequest.h -->
 <script src="http://gist.github.com/480089.js"> </script>
 
-What this allows me to do is specify some basic authorization parameters that I want to use for most ever request. The other thing I found is that my actual View Controllers didn't end up needing to use all of the different failure and success cases that the <code>HRResponseDelegate</code> provides. So I went ahead and created my own delegate protocol, <code>RestRequestDelegate</code>. This protocol requires only two methods one for success, and one for failure.
+What this allows me to do is specify some basic authorization parameters that I want to use for most every request. The other thing I found is that my actual View Controllers didn't end up needing to use all of the different failure and success cases that the <code>HRResponseDelegate</code> provides. So I went ahead and created my own delegate protocol, <code>RestRequestDelegate</code>. This protocol requires only two methods one for success, and one for failure.
 <!-- RestRequest.m -->
 <script src="http://gist.github.com/480095.js"> </script>
 This is the class that shows the real duplication of effort required to use <code>httpriot</code>. Notice that we have to implement five different methods to handle all of the success/failure cases. Using this subclass method, we only have to implement two per request.
@@ -39,6 +38,6 @@ Now here is where we can finally see the real fruits of our labor. All of those 
 
 In our success method we take the results, look up a specific value based on a key, and set it into a label. On failure we'd probably want to show an alert or something.
 
-By this point you're probably thinking that this is a lot of work for a single http request, and you're right. On the other hand, in the app I adapted this code from, I make a dozen different requests, several of which are called from multiple places. Using this particular abstraction my View Controllers are almost entirely free of boiler-plate code, my requests are highly re-usable and portable.
+By this point you're probably thinking that this is a lot of work for a single http request, and you're right. Where I found this set of abstractions to make sense is when you have a handful of requests, that may be called from several View Controllers, so it make sense to push as much of the setup as possible into the request subclasses. Obviously if your app has a different usage patter, this may not apply.  Either way, using this particular set of abstractions my View Controllers are almost entirely free of boiler-plate code and my requests are highly re-usable and portable.
 
 Hopefully this serves as a nice, albeit brief, tutorial into httpriot.
