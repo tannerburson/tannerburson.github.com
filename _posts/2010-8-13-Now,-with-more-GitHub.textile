@@ -1,0 +1,14 @@
+---
+layout: post
+title: Now, with more GitHub
+tags: [random]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+published: true
+---
+
+When I setup this blog, I set it up as a "GitHub repository":http://github.com/tannerburson/tannerburson.github.com so that I could write my posts in vim, track them in git, and publish my changes in a way that's extremely similar to how I deploy all of my other apps. This was, and still is, an extremely appealing process. But sometime in the last couple of months post-receive hook script has busted. It doesn't error, it runs fine when I trigger it manually, but doesn't seem to work when called via git. I spent an hour or so trying to figure out what was going on without much luck. So I decided to just take things a step farther.
+
+This blog now lives, and is hosted, directly from GitHub. Thanks to their excellent "Pages":http://pages.github.com/, I don't have to manage a deploy process at all. I just push into my blog repository and a few minutes later everything is updated. This was an easy process to move to, given that I was already using "Jekyll":http://github.com/mojombo/jekyll/, it was just a matter of renaming my repository, a couple of quick DNS changes and I'm all set.
+
+
