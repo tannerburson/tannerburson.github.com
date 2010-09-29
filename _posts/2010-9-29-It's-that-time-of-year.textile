@@ -1,0 +1,36 @@
+---
+layout: post
+title: Nostalgia
+tags: [random]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+published: false
+---
+
+It's that time again,that's right, THAT TIME. For those of you who attended "OSU":http://www.okstate.edu or live(d) in Stillwater, you know that "Homecoming":http://orangeconnection.org/homecoming is just around the corner. That means lots of greek kids suffering from extreme sleep deprevation, welding tans, and fingers full of holes from chicken wire. All to bring the rest of us a few minutes of awe-struck entertainment.
+
+For those unlucky enough to have never experienced this incredible phenomenon let me give you the nearly twitter compliant rundown. Greek houses compete in a competition to build "House Decs", which are kind of like giant, immobile, parade floats. They spend about three months building a structure made from scrap metal, scavenged motors, chicken wire, and tissue paper, all to be put on display to the public for less than 24 hours. They are absolute engineering, and design marvels, and draw thousands of people every year to "Walk Around" and see these creations. If you're having trouble picturing it, check this out.  (Photo from OSU Alumni Association)
+
+!http://orangeconnection.org/s/860/photo_albums/100878/Walkaround09_22jpeg_Thumbnail1_633921712704986031.jpg(House Dec)!
+
+Yes, that's a roughly three story building behind it, yes that's a thousand people standing in front. Each year there are about ten of these created. Yes, it's that awesome.
+
+Okay, now that we've got some context, on to the nostalgia.
+
+During my first few years of college, I was lucky enough to get to help in the creation of these marvels. Initially it wasn't by choice, it was mostly by happenstance. Being the resident computer nerd in the house, I was immediately drawn to the beat-up computer with the strange black box attached to it, and all of the lamps in the living room. After poking, prodding, and annoying it's creator, I discovered that the "black box" was a small electronics controller, which could do IO via external ports and over a parallel port. This plus a handful of relays would allow us to control power to arbitrary powered devices via a computer! The box even came with some sample code to make it work. Sadly, it was in QBasic. But that just made it an even bigger challenge, I was hooked.
+
+A week later, a lot of impromptu Electricity 101 lessons, and plenty of good old Southern Engineering^TM^, we managed to assemble a coreographed fountain display. It ran on off-the-shelf lawn sprinkler valves, a high powered sump pump, someome's oversized boombox, and about a thousand lines of hideous QBasic code. And it was incredible. To my knowledge it was the first computer controlled House Dec at OSU.
+
+Two days after Homecoming, we tore it all down and started brainstorming for the next year. With the knowledge that I was going to be the "electronics guy" for the next couple of years, I dug in and got ready.
+
+The second year we built what could only be described as a complete masterpiece. I won't bore you with too many details, but we skipped the water features and went for something really crazy. The majority of our Dec consisted of a single giant "merry go round" style wheel, consisting of three segments. Each segment was it's own scene, complete with moving parts and coreographed music. The most complicated of which was a "gunfight" in which Pistol Pete and the Red Raider drew their guns, Pete fires, and the Raider fell down. 
+
+The real innovations for us that year was that we used door alarm magnets to trigger each scene based on the rotation of the wheel. We were now not only handling output from the computer, we were taking input from the House Dec! This had several advantages over what everyone else did at the time. Ours was able to contain a lot more complexity, as we could time things accurate to at least half a second, and adjust as necessary. Everyone else had to adjust the timing by physically altering their machine's characteristics (arm length, gear ratio, chain length, etc). But most interestingly, as the motor started to wear and inevitably slow down, our timing would still be accurate. Since we triggered our events on the physical motion of the wheel, the fact that it would be several seconds slower by the end of the night didn't affect our setup. In fact once we got the show setup, it ran itself for a couple of days (we didn't have the heart to kill it right away).
+
+The other major innovation, and this one was what I was most proud of, was that we were no longer programming the system by writing thousands of lines of QBasic timed out with empty loops. This year I wrote a GUI application capable of modelling the state of the controller at any moment. You could also put the application into a "write" mode, in which you could click through the pattern that you wanted the controller to go through. This could be done "offline" or live with the House Dec attached. Along with that, you were able to add an arbitrary delay, or put the "program" into a "read" state. I didn't realize it at the time, but I had just built a simple computer consisting of only four commands. On, Off, delay, wait. Using this I was able to spend most of my time working on the overall House Dec, and only a few hours programming the actual "show" itself. And most importantly of all, it worked, it worked really well.
+
+I think we won the award for best engineering effort each of those years. The award was great, but it couldn't compare to the sense of accomplishment we all had at having spent months building this thing and seeing it actually work, and look pretty good doing it.
+
+After a few years of this, it was time to pass the torch on to the next group. I trained a couple of people to use the software I'd written, but without any sense of history, or ownership, it fell by the wayside the next year. The year after that they went back to gearing down motors, and adding arms. Without any institutional memory, they had no idea how to do what we'd taught ourselves only a couple of years before, nor probably any idea that it had even been done.
+
+This is the great thing about Homecoming, every year it's new people, with new ideas, and new outlooks. Sometimes it works out spectacularly, and sometimes it falls flat. But every year, walking the streets just off campus, and seeing the thousands of man hours put into each House Dec, I still criticize their tiny faults, laugh at their attempts to hide the failures, and smile knowing that they've just completed something they'll remember forever.
