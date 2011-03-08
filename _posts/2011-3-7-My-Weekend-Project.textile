@@ -1,0 +1,13 @@
+---
+layout: post
+title: My Weekend Project
+tags: [iphone,lowbrow]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+---
+
+Once upon a time there was a website, a website that catered to the lowest of lowbrow humor.  It was aptly named, lowbrow. Then, for no real reason, it vanished. Those of us who were fond of it made varying attempts to resurrect the bits of it that were available to us, and ultimately we all failed.  But just as suddenly as it vanished all of those years ago, it reappeared on a "new domain":http://lowbrow.blackholed.org. But this time with something new, almost unfathomable for lowbrow, an API. Let the gears begin turning...
+
+After playing a bit with the API I decided that I desperately needed a lowbrow application on my iPod Touch, and I needed it immediately. So I gave myself a 48 hour deadline to design and write an iOS app. And unlike all of the OTHER times I've set arbitrary deadlines for side projects, I actually completed this one. I'd do a full write-up on the application itself, but it's pretty unremarkable. It makes an XML based API call using the built in XML parsing, has a single button, and formats HTML content via a web view. It's quick, simple, and to the point. If you're interested in my app (and if you're reading my blog, you should be), you can check it out "on iTunes":http://itunes.apple.com/us/app/lowbrow/id422880852?mt=8.
+
+The bummer was that I sent the app to the App Store for review on February 25th, and waited until March 3rd for the actual review itself to begin. And now, March 7th, it's been approved! All told it was just over a week from idea, through development, and to approval. Not bad, not bad at all.
