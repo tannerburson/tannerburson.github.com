@@ -4,7 +4,6 @@ title: Thoughts on Appcelerator Titanium
 tags: [iphone, ios, javascript, pain]
 author_name: Tanner Burson
 author_uri: http://twitter.com/tannerburson
-published: false
 ---
 
 "Appcelerator Titanium":http://www.appcelerator.com/  is a product that bills itself as the easy way to create cross-platform, native, mobile applications. It's a lofty goal. After several months of development on a decent sized application, I can say that currently the platform falls short of meeting that goal, way short.
