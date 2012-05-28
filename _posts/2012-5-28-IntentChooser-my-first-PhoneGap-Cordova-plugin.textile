@@ -1,0 +1,18 @@
+---
+layout: post
+title: "IntentChooser: my first PhoneGap/Cordova plugin"
+tags: [android,phonegap,cordova]
+author_name: Tanner Burson
+author_uri: http://twitter.com/tannerburson
+---
+
+In the last couple of months I've done a fair bit of programming on iOS/Android/HTML &amp; JS. I've also been experimenting a bit with PhoneGap/Cordova (I'll call it Cordova from here on out). While playing with a Cordova application of my own I ran into the need for a native interaction that wasn't possible with just PhoneGap. I wanted to display what is called an "Intent Chooser" on Android. This is a dialog that displays a list of applications that can be used to handle a specific user request. In my case I wanted to send a tweet using whichever application was installed.
+
+Since I couldn't find an easy method using the built-in tools, I thought I'd learn a few things and write the plugin myself.  Creating a Cordova plugin is actually pretty simple, it's a single class and a single JS file. I went a couple of steps further and made/modified a couple of build scripts to make the process easier. If you're interested you can find that code in my "Cordova Plugin Template Github repo":http://github.com/tannerburson/cordova-plugin-template.
+
+The Intent Chooser plugin can also be "found on Github":http://github.com/tannerburson/cordova-intent-chooser-plugin. So let's see a quick example of how this thing integrates into an application.
+<script src="https://gist.github.com/2820134.js?file=gistfile1.js"></script>
+
+That simple code will pop up a native dialog, limited to apps with the name 'twitter' in them, and send the text 'This is my content'. Since it calls a new Android Activity, there's not much else to it. There are no callbacks, just fire and forget. In the near future I'd like to add support for sending binary data types like images as well, but I didn't need them for my immediate use case. 
+
+If you find any issues, or have feature requests just file issues on Github.
