@@ -1,7 +1,0 @@
-h2. tannerburson.com
-
-Blogger is finally discontinuing their FTP upload service.  So it's time to move on.  I like not having to host a database, and a bunch of dynamic scripts.  I like the idea of using my favorite coding tools to write my blog.  I found that Jekyll fits this very odd niche extremely well, so I set off to find a good jumping off point.
-
-This instance is a fork of "iruel.net":http://github.com/sardaukar/iruel.net, which is in turn based on jduff's "Jekyll repo":http://github.com/mojombo/jekyll.
-
-Over time, it will diverge more in terms of look, and I'll be adding some more pages.
