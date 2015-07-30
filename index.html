@@ -1,1 +1,276 @@
-My Octopress Page is coming soon &hellip;
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="" name="description">
+		<meta content="just a dude abiding" name="author">
+		
+		<title>just a dude abiding</title>
+		
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="just a dude abiding" type="application/rss+xml" />-->
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title">just a dude abiding</div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+            <li><a href="/about.html">About</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+			</header>
+		
+				<!-- START OF index.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/blog/2012/05/28/IntentChooser-my-first-PhoneGap-Cordova-plugin/">IntentChooser: my first PhoneGap/Cordova plugin</a></h1>
+		<time>28 May 2012</time>
+	</header>
+		<div class="content">
+			<p>In the last couple of months I&#8217;ve done a fair bit of programming on iOS/Android/<span class="caps">HTML</span> &amp; JS. I&#8217;ve also been experimenting a bit with PhoneGap/Cordova (I&#8217;ll call it Cordova from here on out). While playing with a Cordova application of my own I ran into the need for a native interaction that wasn&#8217;t possible with just PhoneGap. I wanted to display what is called an &#8220;Intent Chooser&#8221; on Android. This is a dialog that displays a list of applications that can be used to handle a specific user request. In my case I wanted to send a tweet using whichever application was installed.</p>
+<p>Since I couldn&#8217;t find an easy method using the built-in tools, I thought I&#8217;d learn a few things and write the plugin myself.  Creating a Cordova plugin is actually pretty simple, it&#8217;s a single class and a single JS file. I went a couple of steps further and made/modified a couple of build scripts to make the process easier. If you&#8217;re interested you can find that code in my <a href="http://github.com/tannerburson/cordova-plugin-template">Cordova Plugin Template Github repo</a>.</p>
+<p>The Intent Chooser plugin can also be <a href="http://github.com/tannerburson/cordova-intent-chooser-plugin">found on Github</a>. So let&#8217;s see a quick example of how this thing integrates into an application.<br />
+<script src="https://gist.github.com/2820134.js?file=gistfile1.js"></script></p>
+<p>That simple code will pop up a native dialog, limited to apps with the name &#8216;twitter&#8217; in them, and send the text &#8216;This is my content&#8217;. Since it calls a new Android Activity, there&#8217;s not much else to it. There are no callbacks, just fire and forget. In the near future I&#8217;d like to add support for sending binary data types like images as well, but I didn&#8217;t need them for my immediate use case.</p>
+<p>If you find any issues, or have feature requests just file issues on Github.</p>
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/blog/2011/04/03/Thoughts-on-Appcelerator-Titanium/">Thoughts on Appcelerator Titanium</a></h1>
+		<time>03 April 2011</time>
+	</header>
+		<div class="content">
+			<p><a href="http://www.appcelerator.com/">Appcelerator Titanium</a>  is a product that bills itself as the easy way to create cross-platform, native, mobile applications. It&#8217;s a lofty goal. After several months of development on a decent sized application, I can say that currently the platform falls short of meeting that goal, way short.</p>
+<h2>A promising start..</h2>
+<p>I was drawn to Appcelerator because of the idea of being able to write straightforward JS and get native widgets. This would allow me to focus on the logic of my application, and not making sure I hadn&#8217;t forgot to track the retain/release counts on my objects correctly.  Initially I was able to make tremendous progress in mocking up the UI. Sure I don&#8217;t get the great Interface Builder, but with minor tweaks I can deploy to Android! What had taken me weeks to sketch out in Obj-c was taking me hours or days instead. Multi-level navigation heirarchies with back buttons? Easy! But shortly after I reached the end of mocking up my UI flow, I began running into trouble. The documentation for the platform was sparse, but seemed to be improving. If you got really stuck, you could look at the &#8220;KitchenSink&#8221; sample app to see how various components worked. This isn&#8217;t too bad, but progress is slowing&#8230;</p>
+<h2>It does what?</h2>
+<p>So the first clear sign of troubl was that I had to use a separate application (Titanium Developer) to build/launch/monitor my applications. There wasn&#8217;t (and still isn&#8217;t) a visible method to run an app from the command line, or even to just generate code to run from within XCode. Sure, Titanium Developer is a bit slow, a little clumsy, and not terribly stable, but the code is going so much faster it&#8217;s bound to be worth it. Surely it is. I was wrong. Titanium Developer rapidly became the bane of my existence. It&#8217;s only syntax/static checking is done via JSLint with a pretty arcane set of rules. Want to write one line if statements? That&#8217;s a warning. A for loop without checking for property existence? That&#8217;s a warning. Appcelerator&#8217;s own sample app generates hundreds of JSLint warnings. What use are warnings if they are too verbose to find real problems? Get used to missing a comma, or a semi-colon, and it going unnoticed in the sea of other warnings.</p>
+<p>Once I settled into the fact that the Titanium Developer app itself is pretty brutal to work with, I moved onto the next set of troubles. The documentation is terrible. It&#8217;s a simple <span class="caps">API</span> doc, with almost no supporting code, and nearly useless descriptions for many properties. If you really want to know how a particular <span class="caps">API</span> or widget reacts, you have to look at the KitchenSink and hope your use case is covered. If it is covered, then you have to figure out how to work with the spaghetti nature of the sample app, and shoe-horn it into your app. If it&#8217;s not, then you&#8217;re off to the next giant pain, the community forum.</p>
+<p>The idea behind the community forum is great, a place for users to ask and hopefully answer each others questions. Instead what you find are questions that are 6 or 7 months old, unanswered, full of &#8220;any update?&#8221; responses. The most common official responses are &#8220;please provide Titanium and platform <span class="caps">SDK</span> versions&#8221;, with no follow up. When there are solutions, or work arounds, they may no longer be applicable to the newer versions.</p>
+<p>Minor platform versions routinely caused regressions in functionality (like grouped table views scrolling whenever the keyboard is present) while adding more ways for Appcelerator to make a dime (paid Modules), but without fixing persistent, core problems. Don&#8217;t get me wrong, they deserve to make some money off of their product, but leaving broken functionality in place for months with no expected resolution dates just doesn&#8217;t cut it. Some recent examples of major platform bugs: &#8216;swipe&#8217; gestures not being handled correctly or consistently including in their own custom horizontal scrolling view, platform specific overrides not working on devices (but working fine in the simulator) on iOS. And more that I&#8217;ve probably blocked out for my own sanity.</p>
+<h2>Almost there&#8230;</h2>
+<p>I managed to suffer through all of this, I&#8217;d put too much time and effort into the app to give up yet. I&#8217;m too close to the finish line. I&#8217;d become used to the undocumented idiosyncracies (like event propogation failing if you add subviews after the parent view has been added, or image views that cannot be scaled in a logical fashion, strange positiong issues if setting both lef/right or top/bottom). It was time for some last minute bug squashing, and pushing the data off to beta testers! Thanks to the fantastic <a href="http://testflightapp.com/">TestFlight</a> we were able to gather a group of testers, and get our permissioning setup to be able to send them an ad-hoc build. Now all I have to do is get a clean, release build ready.</p>
+<p>Great, Titanium Developer crashes everytime I try and create a release package. The builds take 5 or 6 minutes, have no stop button, and often hang the Titanium Developer UI. The only way to kill a build that&#8217;s already begun is to `killall xcodebuild`, which is certainly not documented. After waiting for the full rebuild (it doesn&#8217;t appear to cache <span class="caps">ANY</span> compilation steps), I am greeted with a large build log error. Usually about a failure to copy some file. The good news is that at this point Titanium Developer has generated a functional(ish) XCode project. Open it in XCode to find&#8230;it hasn&#8217;t set my distribution profile at all, it doesn&#8217;t seem to be targetting the correct platform, and in fact seems to be defaulting to a debug build. In fact some of the generated code seems to still be set to debug mode, must be a custom script that runs outside of XCode to fix that&#8230;</p>
+<p>An hour of learning what isn&#8217;t set correctly in the generated XCode project and I&#8217;m finally building again. Replace a few missing files (default icon, and Default.png don&#8217;t seem to copy correctly), fight with provisioning profiles some more, and a build is finally made. Now I load the fresh beta release onto my device, and immediately find a bug that didn&#8217;t seem to appear in the simulator, curse loudly, and call it a night.</p>
+<h2>Lessons learned?</h2>
+<p>Middleware platforms are a great idea, in theory. In practice it means working through a vendor who is struggling to keep up with the underlying platforms, stuggling to support their paid customers (speculating here), and completely failing to support their free user base. There is practically no external community for the Appcelerator platform, no solid bare bones starter applications, gotcha lists, or much of anything else. It&#8217;s a community of people all fighting to get their project done, and get the hell out of the way. I&#8217;m sure they mean well, but things don&#8217;t look good.</p>
+<p>I&#8217;m monumentally disappointed in the current state of the Appcelerator platform, community, and toolset, and have no plans on doing further development on the platform after completing my current project. I&#8217;m just going to cut my losses and either go back to direct native development, or forget native development alltogether and get with &quot;PhoneGap&quot;http://phonegap.com/</p>
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/blog/2011/03/07/My-Weekend-Project/">My Weekend Project</a></h1>
+		<time>07 March 2011</time>
+	</header>
+		<div class="content">
+			<p>Once upon a time there was a website, a website that catered to the lowest of lowbrow humor.  It was aptly named, lowbrow. Then, for no real reason, it vanished. Those of us who were fond of it made varying attempts to resurrect the bits of it that were available to us, and ultimately we all failed.  But just as suddenly as it vanished all of those years ago, it reappeared on a <a href="http://lowbrow.blackholed.org">new domain</a>. But this time with something new, almost unfathomable for lowbrow, an <span class="caps">API</span>. Let the gears begin turning&#8230;</p>
+<p>After playing a bit with the <span class="caps">API</span> I decided that I desperately needed a lowbrow application on my iPod Touch, and I needed it immediately. So I gave myself a 48 hour deadline to design and write an iOS app. And unlike all of the <span class="caps">OTHER</span> times I&#8217;ve set arbitrary deadlines for side projects, I actually completed this one. I&#8217;d do a full write-up on the application itself, but it&#8217;s pretty unremarkable. It makes an <span class="caps">XML</span> based <span class="caps">API</span> call using the built in <span class="caps">XML</span> parsing, has a single button, and formats <span class="caps">HTML</span> content via a web view. It&#8217;s quick, simple, and to the point. If you&#8217;re interested in my app (and if you&#8217;re reading my blog, you should be), you can check it out <a href="http://itunes.apple.com/us/app/lowbrow/id422880852?mt=8">on iTunes</a>.</p>
+<p>The bummer was that I sent the app to the App Store for review on February 25th, and waited until March 3rd for the actual review itself to begin. And now, March 7th, it&#8217;s been approved! All told it was just over a week from idea, through development, and to approval. Not bad, not bad at all.</p>
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/blog/2011/01/17/My-2011-Quest/">My 2011 Quest</a></h1>
+		<time>17 January 2011</time>
+	</header>
+		<div class="content">
+			<h2>Background</h2>
+<p>I got a <span class="caps">PDA</span> (A Sharp Zaurus, running Linux to be exact) in 2001. By 2003, I was on my third <span class="caps">PDA</span>, my cell-phone could act as a bluetooth modem, and it had a camera. Skip forward a few years, and there&#8217;s Palm&#8217;s, Blackberry&#8217;s, and Android devices. In 10 years I&#8217;ve gone through a dozen PDAs and cell-phones, each with more features and capabilities than the last. But in 2011, I&#8217;m moving backwards, I traded my Android phone in for a $20 nearly-disposable flip phone.</p>
+<p>This wasn&#8217;t a spur of the moment decision, I&#8217;ve been plotting, and thinking, and planning this for months. I started telling folks in December that I would ditch my smartphone in 2011. They almost uniformly had the same response, disbelief. How was I going to go back to not having internet access with me all the time. I wouldn&#8217;t have automatic syncing with my google calendar, or contacts. No email, no web sites, no camera, nothing, just phone calls and sms.</p>
+<h2>Why?</h2>
+<p>That&#8217;s the question everyone wants to know. Why on earth would I give up all the benefits of a smartphone? I don&#8217;t know. Part of me says this is crazy, stupid, and I&#8217;ll be clamoring for a new phone within a month. The other part of me says this is a valid personal study, and might provide worthwhile insight. I&#8217;m listening to the latter part, and trying to answer two questions in the process:</p>
+<ol>
+	<li>Does a smart phone actually make my life easier or better in some appreciable way?</li>
+	<li>How do my daily routines, and general habits change when I don&#8217;t have constant hand-held access to the internet?</li>
+</ol>
+<p>I&#8217;m hoping that at bare minimum this experience provides me with better knowledge about what features I actually need in a smartphone, so my next purchase can be more about function than form.</p>
+<h2>How&#8217;s it going?</h2>
+<p>I took the plunge right before New Years. I went to Wal-Mart and bought the absolute cheapest T-Mobile compatible phone I could find, it was a $19.99 Samsung flip-phone of some sort. It&#8217;s small, light, and absolutely mediocre at all of it&#8217;s basic functions. Which makes it pretty prime for this kind of experiment.</p>
+<p>I&#8217;m now a couple of weeks into my little experiment, and I can tell you that I&#8217;m a bit twitchy everytime I open my email. Did i get 5 emails or 500 since I last checked? Did I miss an email from the boss? There is some noticable apprehension when I open my email. But it does seem to be subsiding.</p>
+<p>I&#8217;ve also become hyper-aware of other people using smartphones. Sitting at a restaurant I noticed an entire table playing with iPhones, and completely ignoring each other. I hope I wasn&#8217;t one of those oblivious people when I was using mine, but I probably was.</p>
+<p>As to how I&#8217;m progressing on answering my two big questions? Well, I can&#8217;t say that I&#8217;ve really missed having a smart phone with me all the time. If anything, the week-long (yes, I charge this thing once a week) battery life of my phone, means that I&#8217;m even less aware that I even have a phone with me.</p>
+<p>The second question is probably harder for me to answer directly, but I have noticed some small things. I have no idea what the weather is supposed to be like today, or tomorrow, or a week from now. None. I think I&#8217;m actually organizing my email better. Since I&#8217;m not skimming a lot of email on my phone, I&#8217;m actually doing a better job of sorting and filing email as I see it come in. I need a small camera I can actually stick in a bag and have with me most of the time.</p>
+<h2>And&#8230;</h2>
+<p>I&#8217;ll post another follow up to this later, once this change has really sunk in. In the meantime, wish me luck, I feel like I&#8217;m going to need it.</p>
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+		
+		<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/blog/2010/08/13/Now%2C-with-more-GitHub/">Now, with more GitHub</a></h1>
+		<time>13 August 2010</time>
+	</header>
+		<div class="content">
+			<p>When I setup this blog, I set it up as a <a href="http://github.com/tannerburson/tannerburson.github.com">GitHub repository</a> so that I could write my posts in vim, track them in git, and publish my changes in a way that&#8217;s extremely similar to how I deploy all of my other apps. This was, and still is, an extremely appealing process. But sometime in the last couple of months post-receive hook script has busted. It doesn&#8217;t error, it runs fine when I trigger it manually, but doesn&#8217;t seem to work when called via git. I spent an hour or so trying to figure out what was going on without much luck. So I decided to just take things a step farther.</p>
+<p>This blog now lives, and is hosted, directly from GitHub. Thanks to their excellent <a href="http://pages.github.com/">Pages</a>, I don&#8217;t have to manage a deploy process at all. I just push into my blog repository and a few minutes later everything is updated. This was an easy process to move to, given that I was already using <a href="http://github.com/mojombo/jekyll/">Jekyll</a>, it was just a matter of renaming my repository, a couple of quick <span class="caps">DNS</span> changes and I&#8217;m all set.</p>
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+	
+	
+<div class="pagination">
+	
+		<a class="older" href="/blog/page/2/">Older</a>
+	
+	
+	<span class="total">1 of 5</span>
+	
+	
+</div>
+<!-- END OF index.html -->
+
+		
+			<footer>
+				Copyright &copy; 2015
+
+	Tanner Burson
+
+
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		$(document).ready(function() {
+			// Make images center
+			$('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			$('p:has(img)').append(function () {
+				return '<div class="caption">' + ($('img', this).attr('title') || "") + '</div>';
+			});
+			
+			// Prettify code
+			$('code').addClass('prettyprint');
+			$('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			$('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			$('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: $(this).next('code').text(),
+				afterCopy: function(){
+					$(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->

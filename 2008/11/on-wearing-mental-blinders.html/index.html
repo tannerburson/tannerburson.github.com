@@ -1,0 +1,118 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="" name="description">
+		<meta content="just a dude abiding" name="author">
+		
+		<title>on wearing mental blinders &mdash; just a dude abiding</title>
+		
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="just a dude abiding" type="application/rss+xml" />-->
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title">just a dude abiding</div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+            <li><a href="/about.html">About</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+			</header>
+		
+				<!-- START OF _layouts/post.html -->
+
+<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/2008/11/on-wearing-mental-blinders.html">on wearing mental blinders</a></h1>
+		<time>24 November 2008</time>
+	</header>
+		<div class="content">
+			Today I read something very annoying.  I&#8217;d read of this &#8220;problem&#8221; before, but for some reason it&#8217;s rampant stupidity never really struck a chord with me.  I read a blog post/article/something involving a group of people trying to design a system to handle the transfer of your digital data in the event that you unexpectedly get hit by that bus everyone always talks about.<br /><br />My first thought was that this was indeed a problem that would only grow in significance thanks to everyone being told to live in &#8220;the cloud&#8221;.  Upon further thought, this is one of the most pointless things anyone has ever wasted time on, and I should know, I&#8217;ve wasted a lot of time on pointless things.  Sidebar: What level of irony does this post reach?<br /><br />One of the key reasons this is incredibly pointless is that the problem has been faced, in varying forms, for hundreds of years.  Just because the data is now in a computer, doesn&#8217;t change the nature of the problem.  To prove this, let&#8217;s break down the process of what is actually being considered.<ol><li>There is data that is important to you, that you don&#8217;t want others to read, so it is protected by some form of password</li><li><span style="font-weight:bold;">You don&#8217;t want to write down your important account information as it changes because that is too cumbersome</span></li><li>You are now dead</li><li>You now wish your private data to be shared with your loved ones (or something)</li></ol>Replace data with &#8220;sharp rock good at killing things&#8221;, and &#8220;password&#8221; with &#8220;which bush near the cave I hid it under&#8221; and you&#8217;ve got roughly the same issue.  <br /><br />I understand the problem that many people face today of thinking that somehow using the internet in the solution to a problem makes the solution inherently better, but in this case it&#8217;s going way too far. The real problem here isn&#8217;t a technical one, or a social one, it&#8217;s simple human laziness.  People are considering working on very complicated public key signing mechanisms, or notification/verification systems, or something else equally as complicated to solve the problem of people being too lazy to write down a couple of lines of data every few months.  (A note to lazy readers like myself, the laziness in the process is in bold)<br /><br />After great thought, I have come to what I believe to be the <span style="font-style:italic;">ultimate</span> solution to this problem. <ul><br /><li>Write down important account information (usernames, account numbers, etc).</li><li>Write down a list of possible passwords, because we all know no one is changing their password to something totally unique for every service they use every 60 days.</li><li>Write down your most common challenge question/responses.</li><li>Place the above information in a safe, either at your house, or at a bank.</li><li>Leave a key somewhere safe, inform your loved ones that should you finally get hit by that bus that everyone always talks about, the safe has usernames and passwords they may find helpful.</li></ul>You may now sleep easier knowing that your loved ones can access all of your excellent daily stock tip emails, and unsolicited offers for medication long after your untimely demise.<br /><br />Now that I&#8217;m done ranting, what did I learn from this little thought exercise? The people discussing this topic aren&#8217;t stupid, hell I&#8217;m sure they&#8217;re smarter and more accomplished than I am.  So why are they wasting time trying to fix a problem that can&#8217;t really be fixed? They&#8217;re either participating in a mental exercise of their own, or they put on their Mental Blinders.  <br /><br />Mental Blinders is what I call the &#8220;thing&#8221; that happens when we constrain ourselves to a particularly narrow solution set, often in the process ignoring simpler or more effective solutions.<br /><br />The next time I find myself slogging through an increasingly complicated solution to a problem, I need to remind myself to stand  back and see if I&#8217;ve put on my blinders.
+
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+
+<!-- END OF _/layouts/post.html -->
+
+		
+			<footer>
+				Copyright &copy; 2015
+
+	Tanner Burson
+
+
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		$(document).ready(function() {
+			// Make images center
+			$('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			$('p:has(img)').append(function () {
+				return '<div class="caption">' + ($('img', this).attr('title') || "") + '</div>';
+			});
+			
+			// Prettify code
+			$('code').addClass('prettyprint');
+			$('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			$('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			$('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: $(this).next('code').text(),
+				afterCopy: function(){
+					$(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->

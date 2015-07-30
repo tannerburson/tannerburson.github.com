@@ -1,0 +1,118 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="" name="description">
+		<meta content="just a dude abiding" name="author">
+		
+		<title>Now, with more GitHub &mdash; just a dude abiding</title>
+		
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="just a dude abiding" type="application/rss+xml" />-->
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title">just a dude abiding</div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+            <li><a href="/about.html">About</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+			</header>
+		
+				<!-- START OF _layouts/post.html -->
+
+<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/blog/2010/08/13/Now%2C-with-more-GitHub/">Now, with more GitHub</a></h1>
+		<time>13 August 2010</time>
+	</header>
+		<div class="content">
+			<p>When I setup this blog, I set it up as a <a href="http://github.com/tannerburson/tannerburson.github.com">GitHub repository</a> so that I could write my posts in vim, track them in git, and publish my changes in a way that&#8217;s extremely similar to how I deploy all of my other apps. This was, and still is, an extremely appealing process. But sometime in the last couple of months post-receive hook script has busted. It doesn&#8217;t error, it runs fine when I trigger it manually, but doesn&#8217;t seem to work when called via git. I spent an hour or so trying to figure out what was going on without much luck. So I decided to just take things a step farther.</p>
+<p>This blog now lives, and is hosted, directly from GitHub. Thanks to their excellent <a href="http://pages.github.com/">Pages</a>, I don&#8217;t have to manage a deploy process at all. I just push into my blog repository and a few minutes later everything is updated. This was an easy process to move to, given that I was already using <a href="http://github.com/mojombo/jekyll/">Jekyll</a>, it was just a matter of renaming my repository, a couple of quick <span class="caps">DNS</span> changes and I&#8217;m all set.</p>
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+
+<!-- END OF _/layouts/post.html -->
+
+		
+			<footer>
+				Copyright &copy; 2015
+
+	Tanner Burson
+
+
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		$(document).ready(function() {
+			// Make images center
+			$('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			$('p:has(img)').append(function () {
+				return '<div class="caption">' + ($('img', this).attr('title') || "") + '</div>';
+			});
+			
+			// Prettify code
+			$('code').addClass('prettyprint');
+			$('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			$('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			$('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: $(this).next('code').text(),
+				afterCopy: function(){
+					$(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->

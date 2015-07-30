@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+	<title><![CDATA[just a dude abiding]]></title>
+	<link href="http://tannerburson.com/atom.xml" rel="self"/>
+	<link href="http://tannerburson.com/"/>
+	<updated>2015-07-29T21:57:40-04:00</updated>
+	<id>http://tannerburson.com/</id>
+	<author>
+		<name><![CDATA[Tanner Burson]]></name>
+		
+	</author>
+	<generator uri="http://octopress.org/">Octopress</generator>
+
+	
+	<entry>
+		
+			<title type="html"><![CDATA[IntentChooser: my first PhoneGap/Cordova plugin]]></title>
+		
+		<link href="http://tannerburson.com/blog/2012/05/28/IntentChooser-my-first-PhoneGap-Cordova-plugin/"/>
+		<updated>2012-05-28T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/blog/2012/05/28/IntentChooser-my-first-PhoneGap-Cordova-plugin</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p>In the last couple of months I&#8217;ve done a fair bit of programming on iOS/Android/<span class="caps">HTML</span> &amp; JS. I&#8217;ve also been experimenting a bit with PhoneGap/Cordova (I&#8217;ll call it Cordova from here on out). While playing with a Cordova application of my own I ran into the need for a native interaction that wasn&#8217;t possible with just PhoneGap. I wanted to display what is called an &#8220;Intent Chooser&#8221; on Android. This is a dialog that displays a list of applications that can be used to handle a specific user request. In my case I wanted to send a tweet using whichever application was installed.</p>
+<p>Since I couldn&#8217;t find an easy method using the built-in tools, I thought I&#8217;d learn a few things and write the plugin myself.  Creating a Cordova plugin is actually pretty simple, it&#8217;s a single class and a single JS file. I went a couple of steps further and made/modified a couple of build scripts to make the process easier. If you&#8217;re interested you can find that code in my <a href="http://github.com/tannerburson/cordova-plugin-template">Cordova Plugin Template Github repo</a>.</p>
+<p>The Intent Chooser plugin can also be <a href="http://github.com/tannerburson/cordova-intent-chooser-plugin">found on Github</a>. So let&#8217;s see a quick example of how this thing integrates into an application.<br />
+<script src="https://gist.github.com/2820134.js?file=gistfile1.js"></script></p>
+<p>That simple code will pop up a native dialog, limited to apps with the name &#8216;twitter&#8217; in them, and send the text &#8216;This is my content&#8217;. Since it calls a new Android Activity, there&#8217;s not much else to it. There are no callbacks, just fire and forget. In the near future I&#8217;d like to add support for sending binary data types like images as well, but I didn&#8217;t need them for my immediate use case.</p>
+<p>If you find any issues, or have feature requests just file issues on Github.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Thoughts on Appcelerator Titanium]]></title>
+		
+		<link href="http://tannerburson.com/blog/2011/04/03/Thoughts-on-Appcelerator-Titanium/"/>
+		<updated>2011-04-03T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/blog/2011/04/03/Thoughts-on-Appcelerator-Titanium</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p><a href="http://www.appcelerator.com/">Appcelerator Titanium</a>  is a product that bills itself as the easy way to create cross-platform, native, mobile applications. It&#8217;s a lofty goal. After several months of development on a decent sized application, I can say that currently the platform falls short of meeting that goal, way short.</p>
+<h2>A promising start..</h2>
+<p>I was drawn to Appcelerator because of the idea of being able to write straightforward JS and get native widgets. This would allow me to focus on the logic of my application, and not making sure I hadn&#8217;t forgot to track the retain/release counts on my objects correctly.  Initially I was able to make tremendous progress in mocking up the UI. Sure I don&#8217;t get the great Interface Builder, but with minor tweaks I can deploy to Android! What had taken me weeks to sketch out in Obj-c was taking me hours or days instead. Multi-level navigation heirarchies with back buttons? Easy! But shortly after I reached the end of mocking up my UI flow, I began running into trouble. The documentation for the platform was sparse, but seemed to be improving. If you got really stuck, you could look at the &#8220;KitchenSink&#8221; sample app to see how various components worked. This isn&#8217;t too bad, but progress is slowing&#8230;</p>
+<h2>It does what?</h2>
+<p>So the first clear sign of troubl was that I had to use a separate application (Titanium Developer) to build/launch/monitor my applications. There wasn&#8217;t (and still isn&#8217;t) a visible method to run an app from the command line, or even to just generate code to run from within XCode. Sure, Titanium Developer is a bit slow, a little clumsy, and not terribly stable, but the code is going so much faster it&#8217;s bound to be worth it. Surely it is. I was wrong. Titanium Developer rapidly became the bane of my existence. It&#8217;s only syntax/static checking is done via JSLint with a pretty arcane set of rules. Want to write one line if statements? That&#8217;s a warning. A for loop without checking for property existence? That&#8217;s a warning. Appcelerator&#8217;s own sample app generates hundreds of JSLint warnings. What use are warnings if they are too verbose to find real problems? Get used to missing a comma, or a semi-colon, and it going unnoticed in the sea of other warnings.</p>
+<p>Once I settled into the fact that the Titanium Developer app itself is pretty brutal to work with, I moved onto the next set of troubles. The documentation is terrible. It&#8217;s a simple <span class="caps">API</span> doc, with almost no supporting code, and nearly useless descriptions for many properties. If you really want to know how a particular <span class="caps">API</span> or widget reacts, you have to look at the KitchenSink and hope your use case is covered. If it is covered, then you have to figure out how to work with the spaghetti nature of the sample app, and shoe-horn it into your app. If it&#8217;s not, then you&#8217;re off to the next giant pain, the community forum.</p>
+<p>The idea behind the community forum is great, a place for users to ask and hopefully answer each others questions. Instead what you find are questions that are 6 or 7 months old, unanswered, full of &#8220;any update?&#8221; responses. The most common official responses are &#8220;please provide Titanium and platform <span class="caps">SDK</span> versions&#8221;, with no follow up. When there are solutions, or work arounds, they may no longer be applicable to the newer versions.</p>
+<p>Minor platform versions routinely caused regressions in functionality (like grouped table views scrolling whenever the keyboard is present) while adding more ways for Appcelerator to make a dime (paid Modules), but without fixing persistent, core problems. Don&#8217;t get me wrong, they deserve to make some money off of their product, but leaving broken functionality in place for months with no expected resolution dates just doesn&#8217;t cut it. Some recent examples of major platform bugs: &#8216;swipe&#8217; gestures not being handled correctly or consistently including in their own custom horizontal scrolling view, platform specific overrides not working on devices (but working fine in the simulator) on iOS. And more that I&#8217;ve probably blocked out for my own sanity.</p>
+<h2>Almost there&#8230;</h2>
+<p>I managed to suffer through all of this, I&#8217;d put too much time and effort into the app to give up yet. I&#8217;m too close to the finish line. I&#8217;d become used to the undocumented idiosyncracies (like event propogation failing if you add subviews after the parent view has been added, or image views that cannot be scaled in a logical fashion, strange positiong issues if setting both lef/right or top/bottom). It was time for some last minute bug squashing, and pushing the data off to beta testers! Thanks to the fantastic <a href="http://testflightapp.com/">TestFlight</a> we were able to gather a group of testers, and get our permissioning setup to be able to send them an ad-hoc build. Now all I have to do is get a clean, release build ready.</p>
+<p>Great, Titanium Developer crashes everytime I try and create a release package. The builds take 5 or 6 minutes, have no stop button, and often hang the Titanium Developer UI. The only way to kill a build that&#8217;s already begun is to `killall xcodebuild`, which is certainly not documented. After waiting for the full rebuild (it doesn&#8217;t appear to cache <span class="caps">ANY</span> compilation steps), I am greeted with a large build log error. Usually about a failure to copy some file. The good news is that at this point Titanium Developer has generated a functional(ish) XCode project. Open it in XCode to find&#8230;it hasn&#8217;t set my distribution profile at all, it doesn&#8217;t seem to be targetting the correct platform, and in fact seems to be defaulting to a debug build. In fact some of the generated code seems to still be set to debug mode, must be a custom script that runs outside of XCode to fix that&#8230;</p>
+<p>An hour of learning what isn&#8217;t set correctly in the generated XCode project and I&#8217;m finally building again. Replace a few missing files (default icon, and Default.png don&#8217;t seem to copy correctly), fight with provisioning profiles some more, and a build is finally made. Now I load the fresh beta release onto my device, and immediately find a bug that didn&#8217;t seem to appear in the simulator, curse loudly, and call it a night.</p>
+<h2>Lessons learned?</h2>
+<p>Middleware platforms are a great idea, in theory. In practice it means working through a vendor who is struggling to keep up with the underlying platforms, stuggling to support their paid customers (speculating here), and completely failing to support their free user base. There is practically no external community for the Appcelerator platform, no solid bare bones starter applications, gotcha lists, or much of anything else. It&#8217;s a community of people all fighting to get their project done, and get the hell out of the way. I&#8217;m sure they mean well, but things don&#8217;t look good.</p>
+<p>I&#8217;m monumentally disappointed in the current state of the Appcelerator platform, community, and toolset, and have no plans on doing further development on the platform after completing my current project. I&#8217;m just going to cut my losses and either go back to direct native development, or forget native development alltogether and get with &quot;PhoneGap&quot;http://phonegap.com/</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[My Weekend Project]]></title>
+		
+		<link href="http://tannerburson.com/blog/2011/03/07/My-Weekend-Project/"/>
+		<updated>2011-03-07T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/blog/2011/03/07/My-Weekend-Project</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p>Once upon a time there was a website, a website that catered to the lowest of lowbrow humor.  It was aptly named, lowbrow. Then, for no real reason, it vanished. Those of us who were fond of it made varying attempts to resurrect the bits of it that were available to us, and ultimately we all failed.  But just as suddenly as it vanished all of those years ago, it reappeared on a <a href="http://lowbrow.blackholed.org">new domain</a>. But this time with something new, almost unfathomable for lowbrow, an <span class="caps">API</span>. Let the gears begin turning&#8230;</p>
+<p>After playing a bit with the <span class="caps">API</span> I decided that I desperately needed a lowbrow application on my iPod Touch, and I needed it immediately. So I gave myself a 48 hour deadline to design and write an iOS app. And unlike all of the <span class="caps">OTHER</span> times I&#8217;ve set arbitrary deadlines for side projects, I actually completed this one. I&#8217;d do a full write-up on the application itself, but it&#8217;s pretty unremarkable. It makes an <span class="caps">XML</span> based <span class="caps">API</span> call using the built in <span class="caps">XML</span> parsing, has a single button, and formats <span class="caps">HTML</span> content via a web view. It&#8217;s quick, simple, and to the point. If you&#8217;re interested in my app (and if you&#8217;re reading my blog, you should be), you can check it out <a href="http://itunes.apple.com/us/app/lowbrow/id422880852?mt=8">on iTunes</a>.</p>
+<p>The bummer was that I sent the app to the App Store for review on February 25th, and waited until March 3rd for the actual review itself to begin. And now, March 7th, it&#8217;s been approved! All told it was just over a week from idea, through development, and to approval. Not bad, not bad at all.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[My 2011 Quest]]></title>
+		
+		<link href="http://tannerburson.com/blog/2011/01/17/My-2011-Quest/"/>
+		<updated>2011-01-17T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/blog/2011/01/17/My-2011-Quest</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<h2>Background</h2>
+<p>I got a <span class="caps">PDA</span> (A Sharp Zaurus, running Linux to be exact) in 2001. By 2003, I was on my third <span class="caps">PDA</span>, my cell-phone could act as a bluetooth modem, and it had a camera. Skip forward a few years, and there&#8217;s Palm&#8217;s, Blackberry&#8217;s, and Android devices. In 10 years I&#8217;ve gone through a dozen PDAs and cell-phones, each with more features and capabilities than the last. But in 2011, I&#8217;m moving backwards, I traded my Android phone in for a $20 nearly-disposable flip phone.</p>
+<p>This wasn&#8217;t a spur of the moment decision, I&#8217;ve been plotting, and thinking, and planning this for months. I started telling folks in December that I would ditch my smartphone in 2011. They almost uniformly had the same response, disbelief. How was I going to go back to not having internet access with me all the time. I wouldn&#8217;t have automatic syncing with my google calendar, or contacts. No email, no web sites, no camera, nothing, just phone calls and sms.</p>
+<h2>Why?</h2>
+<p>That&#8217;s the question everyone wants to know. Why on earth would I give up all the benefits of a smartphone? I don&#8217;t know. Part of me says this is crazy, stupid, and I&#8217;ll be clamoring for a new phone within a month. The other part of me says this is a valid personal study, and might provide worthwhile insight. I&#8217;m listening to the latter part, and trying to answer two questions in the process:</p>
+<ol>
+	<li>Does a smart phone actually make my life easier or better in some appreciable way?</li>
+	<li>How do my daily routines, and general habits change when I don&#8217;t have constant hand-held access to the internet?</li>
+</ol>
+<p>I&#8217;m hoping that at bare minimum this experience provides me with better knowledge about what features I actually need in a smartphone, so my next purchase can be more about function than form.</p>
+<h2>How&#8217;s it going?</h2>
+<p>I took the plunge right before New Years. I went to Wal-Mart and bought the absolute cheapest T-Mobile compatible phone I could find, it was a $19.99 Samsung flip-phone of some sort. It&#8217;s small, light, and absolutely mediocre at all of it&#8217;s basic functions. Which makes it pretty prime for this kind of experiment.</p>
+<p>I&#8217;m now a couple of weeks into my little experiment, and I can tell you that I&#8217;m a bit twitchy everytime I open my email. Did i get 5 emails or 500 since I last checked? Did I miss an email from the boss? There is some noticable apprehension when I open my email. But it does seem to be subsiding.</p>
+<p>I&#8217;ve also become hyper-aware of other people using smartphones. Sitting at a restaurant I noticed an entire table playing with iPhones, and completely ignoring each other. I hope I wasn&#8217;t one of those oblivious people when I was using mine, but I probably was.</p>
+<p>As to how I&#8217;m progressing on answering my two big questions? Well, I can&#8217;t say that I&#8217;ve really missed having a smart phone with me all the time. If anything, the week-long (yes, I charge this thing once a week) battery life of my phone, means that I&#8217;m even less aware that I even have a phone with me.</p>
+<p>The second question is probably harder for me to answer directly, but I have noticed some small things. I have no idea what the weather is supposed to be like today, or tomorrow, or a week from now. None. I think I&#8217;m actually organizing my email better. Since I&#8217;m not skimming a lot of email on my phone, I&#8217;m actually doing a better job of sorting and filing email as I see it come in. I need a small camera I can actually stick in a bag and have with me most of the time.</p>
+<h2>And&#8230;</h2>
+<p>I&#8217;ll post another follow up to this later, once this change has really sunk in. In the meantime, wish me luck, I feel like I&#8217;m going to need it.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Now, with more GitHub]]></title>
+		
+		<link href="http://tannerburson.com/blog/2010/08/13/Now%2C-with-more-GitHub/"/>
+		<updated>2010-08-13T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/blog/2010/08/13/Now,-with-more-GitHub</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p>When I setup this blog, I set it up as a <a href="http://github.com/tannerburson/tannerburson.github.com">GitHub repository</a> so that I could write my posts in vim, track them in git, and publish my changes in a way that&#8217;s extremely similar to how I deploy all of my other apps. This was, and still is, an extremely appealing process. But sometime in the last couple of months post-receive hook script has busted. It doesn&#8217;t error, it runs fine when I trigger it manually, but doesn&#8217;t seem to work when called via git. I spent an hour or so trying to figure out what was going on without much luck. So I decided to just take things a step farther.</p>
+<p>This blog now lives, and is hosted, directly from GitHub. Thanks to their excellent <a href="http://pages.github.com/">Pages</a>, I don&#8217;t have to manage a deploy process at all. I just push into my blog repository and a few minutes later everything is updated. This was an easy process to move to, given that I was already using <a href="http://github.com/mojombo/jekyll/">Jekyll</a>, it was just a matter of renaming my repository, a couple of quick <span class="caps">DNS</span> changes and I&#8217;m all set.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Using httpriot on IOS]]></title>
+		
+		<link href="http://tannerburson.com/blog/2010/07/31/Using-httpriot-on-iOS/"/>
+		<updated>2010-07-31T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/blog/2010/07/31/Using-httpriot-on-iOS</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p>One of the things that surprised me when I first started with iPhone development is the verbosity of the built-in classes for making <span class="caps">HTTP</span> requests. (see: <a href="http://developer.apple.com/iphone/library/documentation/cocoa/Conceptual/URLLoadingSystem/Tasks/UsingNSURLConnection.html#//apple_ref/doc/uid/20001836-BAJEAIEE">Using NSURLConnection</a> ) So I quickly started looking for a wrapper library that simplifies this process. I found two candidates <a href="http://allseeing-i.com/ASIHTTPRequest/">ASIHTTPRequest</a> and <a href="http://labratrevenge.com/httpriot/docs/">httpriot</a>. For no reason other than some familiarity with the Ruby library that inspired it, I chose httpriot.</p>
+<p>It turned out to require a <span class="caps">BIT</span> more code than I had expected, so I&#8217;ve documented my setup, and hopefully some of my reasoning here. I&#8217;m probably wrong in some of this, but there&#8217;s no easier way to know than to share it with the world.</p>
+<p>After making a few requests, I noticed some repeated code which seemed ripe for abstraction. I started my abstraction by create a simple subclass of httpriot&#8217;s main class, <code>HRRestModel</code>, named <code>RestRequest</code>. From what I gathered, this is the recommended way of using httpriot to begin with.<br />
+<!-- RestRequest.h --><br />
+<script src="http://gist.github.com/480089.js"> </script></p>
+<p>What this allows me to do is specify some basic authorization parameters that I want to use for most every request. The other thing I found is that my actual View Controllers didn&#8217;t end up needing to use all of the different failure and success cases that the <code>HRResponseDelegate</code> provides. So I went ahead and created my own delegate protocol, <code>RestRequestDelegate</code>. This protocol requires only two methods one for success, and one for failure.<br />
+<!-- RestRequest.m --><br />
+<script src="http://gist.github.com/480095.js"> </script>
+This is the class that shows the real duplication of effort required to use <code>httpriot</code>. Notice that we have to implement five different methods to handle all of the success/failure cases. Using this subclass method, we only have to implement two per request.</p>
+<p>Some notes on the actual implementation of the <code>RestRequest</code>: You&#8217;ll want to set your own <code>BaseURL</code>. You can do this per request class, or as I do here, in the main base class. At a glance right now, the <code>processResult</code> and <code>processFailure</code> methods may seem superfluous, and as of right now, they are. But their purpose is that they can be overridden in subclasses to be used in any data processing or reorganization. Also note that I go ahead and enable/disable the network activity indicator in this base class. I made the decision that I wanted the indicator to show for all <span class="caps">HTTP</span> requests, so I just went ahead and handled it here.</p>
+<p>Now on to a sample class that subclasses our new, simpler, <code>RestRequest</code> class. There&#8217;s not really much to explain here, so I&#8217;ll skip on down to the implementation class.<br />
+<!-- GetWhatever.h --><br />
+<script src="http://gist.github.com/480097.js"> </script></p>
+<p><!-- GetWhatever.m --><br />
+<script src="http://gist.github.com/480099.js"> </script></p>
+<p>The <code>fetch</code> method just takes in an object (which is our view controller in this case), and then calls the correct <span class="caps">URL</span>. It could also take in any <span class="caps">HTTP</span> parameters you need to pass, but for this example I&#8217;m not using any.</p>
+<p>We then have a simple <code>processResult</code> and <code>processFailure</code>. Again, this is a simple example, so we don&#8217;t have any data processing to do, so we just call the delegate method, <code>restRequestSuccess</code> and pass it our result. Simple as can be.<br />
+<!-- ViewControllerSample --><br />
+<script src="http://gist.github.com/480104.js"> </script></p>
+<p>Now here is where we can finally see the real fruits of our labor. All of those subclasses, and delegates, and protocols, for&#8230;this. Simple, clean View controller code.  Note that we call the <code>fetch</code> method of the <code>GetWhateverRequest</code> class, and pass in <code>self</code> as the acting delegate.</p>
+<p>In our success method we take the results, look up a specific value based on a key, and set it into a label. On failure we&#8217;d probably want to show an alert or something.</p>
+<p>By this point you&#8217;re probably thinking that this is a lot of work for a single http request, and you&#8217;re right. Where I found this set of abstractions to make sense is when you have a handful of requests, that may be called from several View Controllers, so it make sense to push as much of the setup as possible into the request subclasses. Obviously if your app has a different usage patter, this may not apply.  Either way, using this particular set of abstractions my View Controllers are almost entirely free of boiler-plate code and my requests are highly re-usable and portable.</p>
+<p>Hopefully this serves as a nice, albeit brief, tutorial into httpriot.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[iPhone Development Surprises]]></title>
+		
+		<link href="http://tannerburson.com/blog/2010/07/08/iPhone-Development-Surprises-part-1/"/>
+		<updated>2010-07-08T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/blog/2010/07/08/iPhone-Development-Surprises-part-1</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p>I&#8217;ve recently started working on <a href="http://www.playlookit.com/how-to-play-lookit">a yet to be announced</a> iPhone application. This is my first serious foray into mobile development. I&#8217;ve written an occasional script for <a href="http://code.google.com/p/android-scripting/"><span class="caps">ASE</span></a> or way back in the day for my Sharp Zaurus, but nothing serious for the new breed of smartphones. This post is a simple list of surprises that I&#8217;ve stumbled across thus far. I&#8217;m sure many of these are documented elsewhere, but I felt like documenting them all in one place.</p>
+<h3>The default buttons suck</h3>
+<p><strong>Every</strong> app you&#8217;ve ever used on an iOS device, uses very little of the default graphical resources. I fully expected things like, custom backgrounds, icons and non-standard buttons. What I hadn&#8217;t realized is that the default buttons are hideous, so hideous in fact that they just aren&#8217;t used. At all. People have either written their own <code>UIButton</code> subclasses or used lots of custom button background images. It&#8217;s still surprising that Apple doesn&#8217;t provide more common styles by default. Minor problem, but certainly a big surprise when you first get going.</p>
+<h3>The network activity spinner is a lie</h3>
+<p>The network activity spinner in the status bar is not triggered by network activity. Each application must trigger the activity spinner as necessary. Apple&#8217;s <span class="caps">HIG</span> recommends that you only use it for long network requests. This is a <em>great</em> recommendation, but thanks to the mobile nature of iOS devices, there is no practical way to know how long any request is going to take. This means the only safe thing to do is assume that all network requests are potentially long, and manage the spinner for all your requests. It&#8217;s all of one line of code to start, or stop the spinner, so it&#8217;s not a major investment, just something to be taken care of.</p>
+<h3>Everything blocks</h3>
+<p>Coming from a background in web development, I&#8217;m very used to the idea that everything is synchronous unless I go to great lengths to make it otherwise. Objective-C and the iOS <span class="caps">SDK</span> are built around delegation, which looks and feels a lot like asynchronous operation. It&#8217;s really easy to forget with all of the async method calling that you are still sharing a single thread with the UI. Luckily, it&#8217;s not incredibly hard problem to solve when necessary thanks to the pervasive use of delegation.</p>
+<p>It&#8217;s only a few extra lines of code to turn a blocking delegate call, into a non-blocking async operation (look into <code>NSOperation</code> and <code>NSOperationQueue</code>). The more difficult part is handling this sort of thing in the UI. Should I have a modal popup with a spinner? A progress bar? Leave the UI reactive, and just update the UI as necessary? Apple leaves this entirely up to you to handle, which is probably the best, but still leaves some work on your plate.</p>
+<h3><span class="caps">EXIF</span> data? We don&#8217;t need no stinking <span class="caps">EXIF</span> data</h3>
+<p>This one is <em><strong><span class="caps">HUGE</span></strong></em>. So you want to write an application that allows users to upload photos via the camera, or photo gallery. Excellent, me too! You want to collect some interesting usage statistics, or add an <span class="caps">EXIF</span> comment to the image for tracking purposes? Great idea! Too bad you can&#8217;t (easily). The only supported method for accessing a user&#8217;s photos <code>UIImagePickerController</code> returns a <code>UIImage</code> object that is completely devoid of meta data. Yes, that means all of the nice <span class="caps">EXIF</span> data, time, <span class="caps">GPS</span> location, flash, shutter settings, all of it are gone. The best you could do is get an <span class="caps">EXIF</span> library and insert a few relevant headers yourself. This is <em><span class="caps">NOT</span></em> a technical problem, as there is code out there that can get the raw file itself, <span class="caps">EXIF</span> data and all. The problem is that it uses private APIs and is therefore verboten and will keep you out of the App Store. This has already caused me a ton of heartache and I foresee a lot of extra code and workarounds to get similar functionality as what would already be provided in the <span class="caps">EXIF</span> headers. So it goes.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Web Security testing with skipfish]]></title>
+		
+		<link href="http://tannerburson.com/blog/2010/04/19/Web-Security-testing-with-skipfish/"/>
+		<updated>2010-04-19T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/blog/2010/04/19/Web-Security-testing-with-skipfish</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<h3>Web App Security &#8211; an intro</h3>
+<p>In modern web applications there is an an alphabet soup of acronyms to keep in mind when writing your code, <span class="caps">SQL</span> injection, <span class="caps">XSS</span>, <span class="caps">XSRF</span>, <span class="caps">SSL</span>, just to name the common ones. <span class="caps">SQL</span> injection attacks tend to <a href="http://www.pcworld.com/businesscenter/article/146048/mass_sql_injection_attack_targets_chinese_web_sites.html">make</a> <a href="http://thedailywtf.com/Articles/Oklahoma-Leaks-Tens-of-Thousands-of-Social-Security-Numbers,-Other-Sensitive-Data.aspx">big</a> <a href="http://news.bbc.co.uk/2/hi/americas/8206305.stm">news</a> , but due to their publicity are also the most commonly secured vulnerabilities.  There is tons of <a href="http://www.google.com/search?sourceid=chrome&amp;ie=UTF-8&amp;q=preventing+sql+injection">documentation on preventing sql injection</a> but significantly less on properly handling <span class="caps">XSRF</span> and <span class="caps">XSS</span> attacks.  While these kinds of vulnerabilities can be seen by an experienced developer looking carefully over the code, there are very few automated tools for the job. Tools like <a href="http://cirt.net/nikto2">Nikto</a> and <a href="http://www.nessus.org/nessus/">Nessus</a> are great at scanning the underlying web server platform (<span class="caps">IIS</span>, Apache, etc), and in some cases identify some commonly known exploits.  But they aren&#8217;t designed to scan a running web application for unique attack vectors.</p>
+<h3>Some definitions</h3>
+<p>According to <a href="http://www.owasp.org" title="The Open Web Application Security Project (OWASP)"><span class="caps">OWASP</span></a> <span class="caps">XSS</span> is defined as</p>
+<blockquote>
+<p>Cross-site Scripting (<span class="caps">XSS</span>) attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user in the output it generates without validating or encoding it.</p>
+</blockquote>
+<p>In otherwords, <span class="caps">XSS</span> attacks happen whenever a site displays un-sanitized data directly.  This is without a question the most common type of attack on the internet.  Any application which takes data from the user is potentially vulnerable to this class of vulnerabilities.  Most major sites have suffered from at least a limited <span class="caps">XSS</span> vulnerability at some point. While they are extremely common, they aren&#8217;t easy to predict, or find. Even finding solid tools for auditing your own applications has been difficult until recently.</p>
+<p>The other class of attacks I want to look at are the even less well known, <span class="caps">XSRF</span> (sometimes listed as <span class="caps">CSRF</span>) vulnerabilities.  Again to <a href="http://www.owasp.org" title="The Open Web Application Security Project"><span class="caps">OWASP</span></a> for a definition:</p>
+<blockquote>
+<p><span class="caps">CSRF</span> is an attack which forces an end user to execute unwanted actions on a web application in which he/she is currently authenticated. With a little help of social engineering (like sending a link via email/chat), an attacker may force the users of a web application to execute actions of the attacker&#8217;s choosing. A successful <span class="caps">CSRF</span> exploit can compromise end user data and operation in case of normal user. If the targeted end user is the administrator account, this can compromise the entire web application.</p>
+</blockquote>
+<p>Again, simplified, the idea is to pick a fictional link like: http://yourapp.com/site/delete?confirm=yes, and get a user who you suspect is already logged into yourapp.com as an administrator. Take that link and find a method of getting a user to click this link.  There are numerous methods for accomplishing this, which I won&#8217;t even begin to cover here.  If done correctly this will cause a user to execute an action, with valid credentials, that they are not aware they are performing.</p>
+<p>As you can see these types of attacks are not specific to any particular web platform and therefore potentially possible in <em><strong>all</strong></em> web applications.  So now that you&#8217;ve heard the bad news, it&#8217;s time to get to some good news!  A new tool has been developed that makes identifying these kinds of vulnerabilities easier.  That tool is called <a href="http://code.google.com/p/skipfish/">skipfish</a>. I&#8217;ll let you read the description yourself, but in summary skipfish is a tool capable of doing filename fuzzing attacks, analyzing your application and altering it&#8217;s dictionary based on keywords from your site, handling authentication cookies, and filling out and validating form data.  That&#8217;s cool.</p>
+<h2>Introducing skipfish</h2>
+<p>Here&#8217;s more good news, skipfish is entirely open source.  Here&#8217;s the bad news, there are not (yet) pre-compiled binaries or official Windows support.  It should be possible to compile skipfish under <a href="http://www.cygwin.com/">cygwin</a> on Windows.  But for the sake of this article we&#8217;re going to assume you have access to some sort of <a href="http://debian.org">Debian</a> based distro (Ubuntu, Knoppix, Backtrack, etc). Now, let&#8217;s get to it!</p>
+<h2>Installing skipfish</h2>
+<div>
+<pre><code class='bash'>wget http://skipfish.googlecode.com/files/skipfish-1.32b.tgz
+<p>tar zxvf skipfish-1.32b.tgz<br />
+sudo apt-get install libidn11-dev<br />
+cd skipfish<br />
+make<br />
+cp dictionaries/default.wl skipfish.wl<br />
+./skipfish</code></pre></p>
+</div>
+<p>That should download skipfish, it&#8217;s dependency (libidn) and then compile and run skipfish.  Obviously we haven&#8217;t asked it to do much yet so you shouldn&#8217;t really see a lot of useful output at the end of this.  Now it&#8217;s time to get to work! I&#8217;m using skipfish to test an application I&#8217;m currently developing.  I recommend you have a local application to test against as it&#8217;s significantly (almost an order of magnitude) faster to test locally than against an internet based site.  All error reports posted from here on out relate to my application, yours will obviously show different data.</p>
+<h3>Testing with skipfish</h3>
+<p>We&#8217;ve got skipfish downloaded, installed, we&#8217;ve picked the application to test, now it&#8217;s time to actually hit it and see what happens! My test application is available at http://localhost, substitute your <span class="caps">URL</span> where necessary.  For starters let&#8217;s just hit the public facing portion of our app.  It&#8217;s possible to provide skipfish cookie data for an authorized session and have it look at the internal pages of your app, which we&#8217;ll look at later.</p>
+<div>
+<pre><code class='bash'>./skipfish -o output -U -b i http://localhost</code></pre>
+</div>
+<p>Now skipfish is off and running.  Let&#8217;s look at the arguments.  <strong>-o output</strong> tells skipfish to put the results into a directory named <em>output</em>, <strong>-U</strong> tells it to log any external URL&#8217;s and emails found (these might be targets for further auditing). <strong>-b i</strong> tells it to use a valid <span class="caps">MSIE</span> User Agent string when making requests.</p>
+<p>Depending on the speed of your test machine, the performance and size of your application, and probably a dozen other factors, it might take a few seconds, or several hours. Watch the dialog for a few minutes, gauge the amount of time you have, and then go get a soda, watch some TV, or whatever it is you do while waiting for things to finish.  We&#8217;ll move on to the next step once this has finished.</p>
+<p>My scan finished, and in record time (about half an hour, there&#8217;s a lot of pages!).  Now, skipfish has generated us an awesome report on what it&#8217;s found, and how it ranks the severity of those findings.  To open it, browse to the output directory we specified, and open the index.html file in either Firefox or IE (there is a known issue in WebKit browsers that makes opening heavily scripted local files difficult).</p>
+<p>In my case it found nothing severe, but found no shortage of interesting things to look it.  Under each category it provides a link to the <span class="caps">URL</span> it found the issue on, as well as a &#8220;show trace&#8221; button that will provide the <span class="caps">HTTP</span> request/response for that request. I&#8217;m not going to get into an analysis of the results in this article as there are a large variety of potential outputs and they will vary greatly with the application being scanned.  I&#8217;ll leave it as an exercise for the reader to analyze their individual results.</p>
+<p>There is though, a secret and amazingly powerful bit of data provided with each scan&#8217;s output.  One of the most interesting aspects of skipfish is that it runs in a non-deterministic manner.  This means that each unique run of skipfish can lead to a unique set of results.  While this is great from an initial testing perspective, it makes it difficult to perform follow-up tests to confirm that issues have been fixed.  Now, that secret bit of data? In the top right of each output page is a field labelled <em>Random Seed</em>.  You can feed this back into skipfish via the <strong>-q</strong> parameter to perform the exact same run again.</p>
+<p>Now let&#8217;s take a look giving it an authenticated session.  For starters I&#8217;m going to login to my local app in FireFox, and look at the cookies.  Your application&#8217;s login cookies will most likely look vastly different than my own, but I&#8217;ve simulated those from my application below.</p>
+<div>
+<pre><code class='bash'>./skipfish -o authed -U -b i -C authed=true -C userid=12 -X action=logout -N http://localhost/admin</code></pre>
+</div>
+<p>This time we specify a new output directory and <strong>-o authed</strong>, two cookies <strong>-C authed=true</strong> &amp; <strong>-C userid=12</strong>, these need to be replaced with the cookies from your application.  There can be as many of these as necessary.  We also specify a path to exclude, <strong>-X action=logout</strong>, this tells skipfish to ignore any <span class="caps">URL</span> that contains <strong>action=logout</strong> which in this case prevents skipfish from automatically being logged out.  Just to be double sure, we also specify <strong>-N</strong> which tells skipfish to ignore any attempts to delete cookies.</p>
+<p>Just like before, once this scan completes we need to open our output directory in FireFox to review the results.  Lucky for me there are again no high impact vulnerabilities to worry about, just some warnings and medium issues.</p>
+<h3>Conclusion</h3>
+<p>So there we have it, a brief run-through of a few of the stickier web app vulnerabilities, and an overview of a brand new tool to look for them! I haven&#8217;t used skipfish extensively yet, but it&#8217;s definitely a tool I plan to keep in my belt for application testing from here on out.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Jekyll setup and modifications]]></title>
+		
+		<link href="http://tannerburson.com/blog/2010/02/14/Jekyll-setup-and-modifications/"/>
+		<updated>2010-02-14T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/blog/2010/02/14/Jekyll-setup-and-modifications</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p>Now that we&#8217;ve established that this blog is now running on Jekyll, let&#8217;s get down to the business of looking at the setup of Jekyll, and the customizations that I&#8217;ve made.</p>
+<p>For starters I took an existing published setup, and used it as my base instead of a vanilla Jekyll install.  The particular setup I used was <a href="http://github.com/sardaukar/iruel.net">iruel.net</a>, by <a href="http://twitter.com/sardaukar_siet">Bruno Antunes</a>. You can check out his repo for the list of changes over vanilla Jekyll, but they&#8217;re fairly basic.  The majority of his enhancements revolve around Rakefile tasks to fit his deployment system.  I wanted a different setup, so I ended up removing most of it.</p>
+<p><a href="http://github.com/tannerburson/blog.tannerburson.com/commit/56829087c604d2c3d4d2d19ffb245afc7178ddb6">The next step</a> was to remove the files and posts that were already there (ignore the adds for now).  After that, it&#8217;s time to get to work.  I didn&#8217;t want to just start from scratch, I wanted to import my existing blog posts first.  So I went into the Jekyll repo to look at the converter options.  Jekyll currently supports importing from <span class="caps">CSV</span>, Mephisto, MT, Textpattern, Typo and WordPress.  That&#8217;s quite a few options, and certainly should cover a ton of folks, but not me.  As previously mentioned though I need to be able to import from Google Blogger, which means I need to get busy. Blogger luckily provides an <span class="caps">XML</span> based export file of an entire blog.  I just needed to import posts, I ignored all of the stored settings and comments.  I spent a couple of hours reading through the export file, and hacking up some <a href="http://github.com/tannerburson/jekyll/blob/09ba5d11d6afa6f81bae8d3db75388d6b1ca7ce1/lib/jekyll/converters/blogger.rb">really simple code</a> to handle the import.</p>
+<p>Currently the code supports importing all blog posts, their published date, permalink (which is stripped to just the path), and the posts tags.  All of this is able to be imported cleanly into Jekyll, which is awesome. Next I decided to make a few tweaks to my workflow.</p>
+<p>I&#8217;m a slow writer.  Really slow.  I&#8217;ve rewritten this post at least twice by the time you read it.  If you look into my repo, you&#8217;ll probably see that it&#8217;s been in a draft status for longer than I&#8217;d care to know.  Because of that I need to be able to easily manage draft posts.  I decided that the easiest way to handle this would be through a few simple Rake tasks.  I went on and <a href="http://github.com/tannerburson/blog.tannerburson.com/blob/53f20325214559d2d5e0ab0e500ab9dd874b4c0d/Rakefile">modified the existing Rakefile</a>, to add two tasks (drafts and publish), and modify the &#8216;post&#8217; task.  First I modified the &#8216;post&#8217; task to create the post with &#8216;published&#8217; set to &#8216;false&#8217; which prevents Jekyll from generating an <span class="caps">HTML</span> file for that particular textile file. Next the &#8216;publish&#8217; task goes in, removes this flag, and changes the file name to be the current date.  This way the post&#8217;s date is current. The &#8216;drafts&#8217; task is really simple, it just lists all the posts that are still un-published.</p>
+<p>The last, but to me most important, part of my customization is my deployment process.  To deploy my blog, I simply have to push into my github repository, nothing more.  In github I setup a post-receive hook, that calls a script on my site, that has permission to run a ruby deployment script serverside.  That script uses <a href="http://github.com/tannerburson/deployscript/blob/master/examples/local.rb">my deployment script dsl</a>, to move the current site to a backup folder (just in case), create a new directory, clone the github repository, and then run jekyll. This seems complicated but with the deployscript dsl, it&#8217;s only a few lines of code.</p>
+<script src="http://gist.github.com/304394.js"></script><p>This means in one evening I was able to setup Jekyll, customize it, write an importer for my previous blog, and import it, and deploy it all to my server.  Not bad, not bad at all.</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Now, with more Jekyll]]></title>
+		
+		<link href="http://tannerburson.com/blog/2010/02/10/Now%2C-with-more-Jekyll/"/>
+		<updated>2010-02-10T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/blog/2010/02/10/Now,-with-more-Jekyll</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<p>Apparently Google is <a href="http://blogger-ftp.blogspot.com/">abandoning <span class="caps">FTP</span> support</a> for Blogger blogs this next month. As I&#8217;m sure none of you were aware, this blog was hosted via that service.  Instead of waiting until the service went away and then cursing loudly, and flailing my way into a new blog platform, I got proactive, and made the move over a month ahead of time.</p>
+<p>Being a geek of epic proportions, I couldn&#8217;t just use Wordpress or something similar.  No, I needed to find something esoteric, complex, hackerish.  And I found exactly what I was looking for in <a href="http://jekyllrb.com">Jekyll</a>. It&#8217;s a Ruby based static blog engine with a <strong>strong</strong> preference for being under version control. This means that the same tools I use to code, are the same ones I use to blog.  Kick.  Ass.</p>
+<p>Coming up next will be a post detailing how I&#8217;ve got this setup (hint, checkout <a href="http://github.com/tannerburson/blog.tannerburson.com">my github projects</a>)!</p>]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Android scripting for fun and profit]]></title>
+		
+		<link href="http://tannerburson.com/2009/06/android-scripting-for-fun-and-profit.html"/>
+		<updated>2009-06-26T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/2009/06/Android scripting for fun and profit</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[Okay the last part isn&#8217;t exactly likely given that you can&#8217;t directly package a script application as an APK. I doubt you&#8217;ll be making much &#8220;profit&#8221; from it anytime soon.  Regardless, ASE support is a great boon to hackers, and allows for a whole new level of customization of your phone.<br /><br />I decided to organize and prune my book collection the other day, and remembered reading a brief tutorial on scanning barcodes using Python and the ASE.  I thought this would be a great chance to learn a bit about ASE and Android in general.  Here&#8217;s the basic steps I took, hopefully they&#8217;ll be of some use to someone.<br /><br />Despite the instructions which recommend starting with the ASE install, I found it easier to download the python interpreter to the phone first. <a href="http://code.google.com/p/android-scripting/wiki/InstallingInterpreters">http://code.google.com/p/android-scripting/wiki/InstallingInterpreters</a><br /><br />Then install the most recent version of ASE to your phone (either using the QRCode at http://code.google.com/p/android-scripting/ or downloading the APK straight to your phone).<br /><br />The ASE site has a fair bit of sample code, so I took the barcode sample and made a few adjustments that will let me track my book collection easier.  <br /><script src="http://gist.github.com/136812.js"></script><br />The script is admittedly pretty simple: read the barcode, check to make sure we got an actual result, then send it on to the webserver.  Make sure to fill in the proper server name before you use the code. For my purposes I was going to be scanning a bunch of books all at once, so I put it in an infinite loop so I didn&#8217;t have to relaunch it for every book.  To exit the loop simply hit the &#8220;back&#8221; button on your phone.<br /><br />Now that we can scan the barcodes locally, we need to do something with them on the server side.  <br /><script src="http://gist.github.com/136814.js"></script><br />Above is a simple PHP script that will write the ISBNs to a text file.  The most important part is parseUPC method, which converts a UPC barcode to an ISBN.  If the barcode isn&#8217;t formatted as an ISBN it&#8217;s left in it&#8217;s original format.<br /><br />And that&#8217;s basically it.  Drop the PHP code on your web server, make sure the path and server name match in the python script, and you&#8217;re off and scanning!<br /><br />Add in some queries to Amazon ECS or Google Books, and you&#8217;re halfway to your own personal version of LibraryThing.
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Migrating from Sinatra::Test to Rack::Test]]></title>
+		
+		<link href="http://tannerburson.com/2009/05/migrating-from-sinatratest-to-racktest.html"/>
+		<updated>2009-05-18T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/2009/05/Migrating from Sinatra::Test to Rack::Test</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[After seeing the <a href="http://groups.google.com/group/sinatrarb/browse_thread/thread/4960b95298c86a5d?pli=1">release of Sinatra 0.9.2</a> mention (again) that Sinatra::Test would vanish by 1.0, I decided to get with it and move to Rack::Test.  It was really pretty painless and my tests were forced to become a bit more explicit (still not convinced I really LIKE this).  Since I found a few bits of fun along the way I thought I&#8217;d share.<br /><br />I use Test::Spec so some of this may not apply, or may look a bit &#8216;off&#8217; to you, but I think the point should be clear.<br /><script src="http://gist.github.com/113727.js"></script><br /><br />Anywhere you&#8217;re using @response/response, or @request/request you need to change to last_response or last_request.<br /><br />Anywhere you were checking a redirect URL, you now need to check for a full hostname not a relative path.  The default hostname for requests is http://example.org.<br /><br />Also be aware that that Rack::Test tracks cookies.  I haven&#8217;t looked heavily into what that will mean in practice, but if you were manually twiddling the cookies around, you need to look into the CookieJar and how it may affect what you&#8217;re doing.<br /><br />That&#8217;s all that I ran into when moving my tests over.  What did you find?
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Pushing an entire Sinatra app into a Rackup file]]></title>
+		
+		<link href="http://tannerburson.com/2009/05/pushing-entire-sinatra-app-into-rackup.html"/>
+		<updated>2009-05-13T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/2009/05/Pushing an entire Sinatra app into a Rackup file</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[The title pretty much says it all.  This is a pretty pointless thought experiment inspired by <a href="http://devver.net/blog/2009/05/single-file-sinatra-apps-with-specs-baked-in/">this post</a> by the guys at <a href="http://devver.net/">devver</a>.  They came up with a simple way to put both a sinatra application AND it&#8217;s tests into a single file.  Nothing TOO crazy, but definitely cool.<br /><br />Not satisfied with simple and effective, I went to complete overkill.  I put together a way to not only embed a sinatra app and it&#8217;s tests into a single file, but for that file to be a rackup compliant file.  Also, as a pointless but neat bonus, I forced the tests to run before successfully before the app can start.  What&#8217;s the point? I don&#8217;t really know, but it seemed cool so I thought I&#8217;d share.  And no, I&#8217;m not using this anywhere, I don&#8217;t think.<br /><script src="http://gist.github.com/111268.js"></script>
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Extracting subdomains in Sinatra]]></title>
+		
+		<link href="http://tannerburson.com/2009/01/extracting-subdomains-in-sinatra.html"/>
+		<updated>2009-01-31T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/2009/01/Extracting subdomains in Sinatra</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[As part of my <a href="http://blog.tannerburson.com/labels/sinatra.html">continuing education in Sinatra</a>, I decided to learn how Sinatra handles subdomains.  It turns out that neither Rack, nor Sinatra seem to have any native subdomain handling code.  So I took a quick stab at it.  <br /><br /><script src="http://gist.github.com/55784.js"></script><br /><br />The easiest method I could come up with was simply to re-open the Rack::Request class and add a subdomain method.  The method implementation is adapted from Rails, except with Rack style caching.<br /><br />To test this you will need modify your hosts file with something like:<br /><pre><br />127.0.0.1    sample.test.dev<br /></pre><br /><br />Then after running the above script, use the url http://sample.test.dev:4567.  You should see just the word &#8220;sample&#8221; as the output.<br /><br />I&#8217;m not sure that this is the <span style="font-style:italic;">best</span> method, but seems to work for now.
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[Multiple Sinatra .90 applications in one process]]></title>
+		
+		<link href="http://tannerburson.com/2009/01/multiple-sinatra-90-applications-in-one.html"/>
+		<updated>2009-01-20T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/2009/01/Multiple Sinatra .90 applications in one process</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[I recently started work on a new application based on the current Sinatra edge code.  I&#8217;m not new to Ruby, but I&#8217;m definitely new to Sinatra. So I thought I&#8217;d start a small series of posts based on the things I find either interesting, or difficult.  Today&#8217;s post probably falls into both categories.<br /><br />One of the things that drew me to Sinatra was the absolute simplicity in it&#8217;s approach to web apps.  One of the keys to this simplicity is leaning heavily on Rack.  Rack provides a variety of what they call Middleware, small bits of code that insert themselves into the request/response process, handling things like caching, session management, or even JSON parsing. <br /><br />Now that we&#8217;re through with the background, let&#8217;s hit my find of the day. <br /><br />As I started working I found that I felt more comfortable with my application being defined inside of a class instead of just floating around in files (the default method of building a Sinatra app).  It turns out this is one of the lesser documented parts of the new Sinatra .9 release.  (In all fairness this seems to be due to the fact that a lot of the infrastructure that allows this to happen is either brand new, or heavily refactored in this release)<br /><br />It turns out I could do a whole lot more, such as making each portion of my application it&#8217;s own standalone Sinatra application, then using some Rack Middleware to mount each portion into it&#8217;s own URL space.  Why would I want to do this? I think it will make for a very extensible, and potentially scalable infrastructure.  All of that aside, let&#8217;s see HOW you do this!<br /><br />For starters you need to define a class for your application to live in.<br /><br /><script src="http://gist.github.com/49710.js"></script><br /><br />There&#8217;s a simple set of classes that function as little application stubs.  Notice that we require sinatra/base instead of just sinatra.  This is one of the new things in the .9 release.  By requiring just sinatra/base we get all of the sinatra goodness, without any of the intrusive top-level methods.  Since we&#8217;re going to encapsulate our application in our own classes, this is perfect for us!  For these little applications to fully work we&#8217;ll have to define some views, which I&#8217;ll leave up to you (or you can check the full project files at GitHub at the end of this post).<br /><br />Now here is where we define our Rack magic.  We&#8217;ll create a config.ru file, which uses what&#8217;s called RackUp syntax to specify some options for Rack compliant servers to use to configure and start our application.  For this example I&#8217;m using Thin, but you can use whatever you prefer!<br /><br /><script src="http://gist.github.com/49709.js"></script><br /><br />Up until line 15 it&#8217;s pretty standard boilerplate for getting any Sinatra application going, but after that is where things get interesting.  Rack automatically includes the URLMap Middleware which gives us access to the &#8216;map&#8217; method.  This method takes two parameters, a URL prefix, and a block specifying that applications configuration.  We could do any configuration we can do at the top level inside of that block, giving some pretty powerful per-application configuration.<br /><br />And that&#8217;s it!  Start it with thin -p 4567 -R config.ru start, or the equivalent.  You should be able to navigate to / and see your first index, and /blog and /blog/list respectively to see their content.  Notice how our Blog class never uses the /blog URL prefix anywhere.  This would let us pass the exact same class into a different application, at a different URL space, and the application wouldn&#8217;t be any wiser for it.<br /><br />Want to see the whole thing already setup? Check out the GitHub link below for the full sample application.<br /><a href="http://github.com/tannerburson/multi-sinatra-sample/tree/master">http://github.com/tannerburson/multi-sinatra-sample/tree/master</a>
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[on wearing mental blinders]]></title>
+		
+		<link href="http://tannerburson.com/2008/11/on-wearing-mental-blinders.html"/>
+		<updated>2008-11-24T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/2008/11/on wearing mental blinders</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[Today I read something very annoying.  I&#8217;d read of this &#8220;problem&#8221; before, but for some reason it&#8217;s rampant stupidity never really struck a chord with me.  I read a blog post/article/something involving a group of people trying to design a system to handle the transfer of your digital data in the event that you unexpectedly get hit by that bus everyone always talks about.<br /><br />My first thought was that this was indeed a problem that would only grow in significance thanks to everyone being told to live in &#8220;the cloud&#8221;.  Upon further thought, this is one of the most pointless things anyone has ever wasted time on, and I should know, I&#8217;ve wasted a lot of time on pointless things.  Sidebar: What level of irony does this post reach?<br /><br />One of the key reasons this is incredibly pointless is that the problem has been faced, in varying forms, for hundreds of years.  Just because the data is now in a computer, doesn&#8217;t change the nature of the problem.  To prove this, let&#8217;s break down the process of what is actually being considered.<ol><li>There is data that is important to you, that you don&#8217;t want others to read, so it is protected by some form of password</li><li><span style="font-weight:bold;">You don&#8217;t want to write down your important account information as it changes because that is too cumbersome</span></li><li>You are now dead</li><li>You now wish your private data to be shared with your loved ones (or something)</li></ol>Replace data with &#8220;sharp rock good at killing things&#8221;, and &#8220;password&#8221; with &#8220;which bush near the cave I hid it under&#8221; and you&#8217;ve got roughly the same issue.  <br /><br />I understand the problem that many people face today of thinking that somehow using the internet in the solution to a problem makes the solution inherently better, but in this case it&#8217;s going way too far. The real problem here isn&#8217;t a technical one, or a social one, it&#8217;s simple human laziness.  People are considering working on very complicated public key signing mechanisms, or notification/verification systems, or something else equally as complicated to solve the problem of people being too lazy to write down a couple of lines of data every few months.  (A note to lazy readers like myself, the laziness in the process is in bold)<br /><br />After great thought, I have come to what I believe to be the <span style="font-style:italic;">ultimate</span> solution to this problem. <ul><br /><li>Write down important account information (usernames, account numbers, etc).</li><li>Write down a list of possible passwords, because we all know no one is changing their password to something totally unique for every service they use every 60 days.</li><li>Write down your most common challenge question/responses.</li><li>Place the above information in a safe, either at your house, or at a bank.</li><li>Leave a key somewhere safe, inform your loved ones that should you finally get hit by that bus that everyone always talks about, the safe has usernames and passwords they may find helpful.</li></ul>You may now sleep easier knowing that your loved ones can access all of your excellent daily stock tip emails, and unsolicited offers for medication long after your untimely demise.<br /><br />Now that I&#8217;m done ranting, what did I learn from this little thought exercise? The people discussing this topic aren&#8217;t stupid, hell I&#8217;m sure they&#8217;re smarter and more accomplished than I am.  So why are they wasting time trying to fix a problem that can&#8217;t really be fixed? They&#8217;re either participating in a mental exercise of their own, or they put on their Mental Blinders.  <br /><br />Mental Blinders is what I call the &#8220;thing&#8221; that happens when we constrain ourselves to a particularly narrow solution set, often in the process ignoring simpler or more effective solutions.<br /><br />The next time I find myself slogging through an increasingly complicated solution to a problem, I need to remind myself to stand  back and see if I&#8217;ve put on my blinders.
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[on dead projects and spam]]></title>
+		
+		<link href="http://tannerburson.com/feeds/5964520279678788379/posts/default/198548060926532337"/>
+		<updated>2008-11-12T00:00:00-05:00</updated>
+		<id>http://tannerburson.com/feeds/5964520279678788379/posts/default/on dead projects and spam</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[Once upon a time, there was an open source project.  This project was a relatively community driven MVC framework for PHP 4/5.  For a several years things were good, the project leaders were active, and the community was happy.<br /><br />Then one day the project leader vanished!  People were concerned, but kept on working, as they really loved the project.  Things continued in this way for several weeks.  But then a change happened, the leader stepped down, and named his replacement, and all was well again.<br /><br />Tragedy strikes!  After many months of calm and quiet the projects dedicated server crashed, the admins had no backups, and without a gathering place, the community vanished in 
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[it's all about the data, stupid.]]></title>
+		
+		<link href="http://tannerburson.com/2008/10/its-all-about-data-stupid.html"/>
+		<updated>2008-10-16T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/2008/10/it&#8217;s all about the data, stupid.</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<div>On an average day I&#8217;ll touch three different operating systems, and a pile of applications on each one, and I&#8217;ve come to an important realization for me as a programmer: operating systems, and most applications, suck.  Tying your business to any one of them undermines your business from the start (but is often a necessary evil).  Most applications don&#8217;t respect your data, and actively work to make your life more difficult.  </div><div><br /></div><div>My day job involves working closely with our art department, who all use Macs, and their work products (primarily images).  Because of this, it&#8217;s convenient for me to also work on a Mac, to simplify the sharing of data as much as possible.  This works out really nicely, until I need to edit a document that a manager created in MS Office 2007.  I&#8217;ve got Office on my machine, but it won&#8217;t edit that file, or it&#8217;s missing some chart, or annotation, or what have you.  The fact that it was created in Office is unimportant, what&#8217;s important is the <span style="font-style: italic;"><span style="font-weight: bold;">data in the file</span></span> not the file itself.  The file format is actively preventing me from getting to the data.<br /></div><div><br />Applications may be irrelevant, but what isn&#8217;t irrelevant is user data.  The important choices when developing, or evaluating a new system aren&#8217;t whether to use OSX or Windows or Linux.  What&#8217;s important is deciding what needs to be done, what the constraints are (cost, time, etc) and what to do with the data.  Does the data need to be secured from all prying eyes?  Displayed prominently on a website?  Printed to paper and stored in a humidity controlled vault in an abandoned salt mine at an undisclosed location?  All of the above depending on the phase of the moon?<br /><br />The applications that I enjoy working with the most are the ones that understand that the way I need to see my data today may not be what I need tomorrow.  When you design an application, be it on the web, or the desktop, think about the ways in which you show and share data with your users.  Is it easy for them to change the format?  Is it easy for them to get at the data in as raw a form as is applicable?  If your answer to either of the above is &#8216;no&#8217;, then you&#8217;re not respecting your users.<br /></div><br />I don&#8217;t want to have to use MS Office to read my data I&#8217;ve exported from your site.  I don&#8217;t want to be stuck with only a PDF.  I want the option to get raw, unformatted text, or a formatted TeX doc (yes, yes, wishful thinking).  I want the option to get a simple CSV file, or RSS/Atom feed.  I want control of my data.  I want the comfort of knowing I can get my data out of your system, for my own uses, with as few restrictions as possible. Because I don&#8217;t expect you to know every possible way that I may want to use my data.  But I don&#8217;t want you restricting me from certain options based on limited export options.<br /><br /><div>So, what&#8217;s the point? (Other than that I&#8217;m apparently trying to become the next Steve Yegge, yeeshk this is getting long winded)  The point is that it doesn&#8217;t matter what OS you use, it probably sucks.  The applications you use are less important than the data you&#8217;re creating in them.  What&#8217;s <span style="font-style: italic;"><span style="font-weight: bold;">really</span></span> important is having the data that&#8217;s needed, in the format it&#8217;s needed in, when it&#8217;s needed and if you&#8217;re preventing your users from doing this, you&#8217;re ripe for replacement.<br /></div>
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[on shameless self-promotion in a time of social networks]]></title>
+		
+		<link href="http://tannerburson.com/2008/10/on-shameless-self-promotion-in-time-of.html"/>
+		<updated>2008-10-12T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/2008/10/on shameless self-promotion in a time of social networks</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[I can&#8217;t go a single day without hearing (or overhearing) a conversation from a friend or acquaintance discussing one social network or another.  I usually roll my eyes, or ignore these conversations.  As an internet luddite, I try to avoid these time sucking privacy invasive services.  But today I did something, something so contrary to my years of preaching that I felt it necessary to explain my motives.<br /><br />Today I joined  twitter, the poster-child for time wasting, self-indulgent, Web 2.0 buzzword compliance.  What could possibly make such an adamant hater of social networking pull such a 180 overnight?  It&#8217;s really simple,  shameless self-promotion.<br /><br />I spent several days last week at a conference, Tulsa Tech Fest, meeting many very interesting people.  I found quickly that social networks, particularly twitter, were the dominant means of communication and organization amongst the conference attendees that I was most interested in keeping up with.  I heard many tales of meetups, and user groups, all of which are held in places that aren&#8217;t <span style="font-style: italic;"><span style="font-weight: bold;">here</span></span>.<br /><br />If I want an opportunity to get out of here, and do the sort of work I&#8217;d like to do, for the sort of company I&#8217;d like to be doing it for, I&#8217;ve got to be something more than another obscure, unknown developer.  Given that I&#8217;m not currently able to live in a more developer friendly area, the best option for moving forward in my goals, is shameless self-promotion.  Now, back to how this all relates to twitter.<br /><br />I&#8217;m excepting my self-imposed ban on social networking, for purely self-serving reasons.  I need a way to better communicate with others who are working towards the same ends that I am.  Several years ago, the most prevalent tool for this sort of communication was IRC.  But my brief and informal survey seems to show that a lot of conversation has moved to the vast unorganized land of twitter.<br /><br />So here I am, forsaking my self imposed title as an internet luddite in exchange for the chance for some shameless self-promotion.  Sometimes, I guess, we all make sacrifices in exchange for making progress towards our goals.  With that in mind, I humbly apologize for my hypocrisy, and by all means <a href="http://twitter.com/tannerburson">follow me on twitter.</a> (sigh)
+]]>
+		</content>
+	</entry>
+	
+	<entry>
+		
+			<title type="html"><![CDATA[on blinking lights and wasting time]]></title>
+		
+		<link href="http://tannerburson.com/2008/08/on-blinking-lights-and-wasting-time.html"/>
+		<updated>2008-09-15T00:00:00-04:00</updated>
+		<id>http://tannerburson.com/2008/08/on blinking lights and wasting time</id>
+		<content type="html">
+			<![CDATA[
+				
+					<p></p>
+				
+			]]>
+			<![CDATA[<div><div><div><h3>or how I learned to quit being interrupted and regain my productivity</h3></div><div>Hello, my name is Tanner, and I&#8217;m addicted to blinking lights.  The addiction costs me hours of my life every week, and it&#8217;s time to quit.  From the minute I wake up to my screeching blinking alarm clock, until I turn off the TV, put down the phone, and go to sleep I&#8217;m blasted by little blinking lights. In every part of our life we&#8217;re conditioned to pay attention to bright blinking lights, microwaves, fire alarms, emergency vehicles, phones, alarm clocks, status lights on every gadget under the sun, so why should our offices be any different.    But how do you even start trying to break a lifetime of psychological conditioning?  I set out on a quest, a quest to regain my productivity at the office from the blinking lights.  For one week I did everything I could to disable all of the blinking lights I&#8217;d found controlling my time, and in the process figured out how to regain control of my own time.</div><br /><div>I work in your average office, working average hours (8am-5pm, 5 days a week).  I&#8217;m surrounded all day by a half dozen blinking lights.  Thanks to email, office phone, personal email, iCal, and my wonderful BlackBerry, rss readers, etc, my day consists of bouncing my attention from one blinking light to another.  To top it off I get all of my work (and personal) email forwarded to my phone, so I get hit twice when I&#8217;m at work, often separated by a minute or less.  Let&#8217;s have a brief example of what occurred daily when I was at my desk.</div><div><blockquote>Oh, my email icon (on a mac) has a red badge on it, I need to check my email.  My voicemail light is blinking, better drop what I&#8217;m doing and listen.  My cellphone is blinking (or vibrating), I must have a text message, personal email, or voicemail, or just another copy of that email I read less than five minutes ago.  Ohh, 10 new stories in my feed reader, I can at least skim them real quick.</blockquote></div><div><span class="Apple-style-span" style="">The straw that broke the camel&#8217;s back, was counting how many emails I got one day.  The day that I counted, I received over </span><span class="Apple-style-span" style="font-weight: bold;">30 emails</span>.  That day was not extraordinarily busy and I didn&#8217;t even include text messages, personal emails, phone calls, or rss triage sessions.  At this point I should also mention how compulsively I checked my email, if the little badge popped up, I HAD to check my email, that second, and possibly respond, or else catch myself continually glancing at the little red icon. Combine that with the <a href="http://www.smh.com.au/news/biztech/youve-got-interruptions/2008/09/08/1220857455459.html?page=fullpage">latest research showing it takes on average 64 seconds to regain your concentration after an email interruption</a> and you have a recipe for non-productivity. Some simple math shows that I was losing an average of 32 minutes of productivity just regaining my concentration, add in a minute or two actually dealing with whatever interrupted me and you&#8217;ve got a full hour of my day vanishing down the hole of non-productivity.  </div><div><br /></div><div>What&#8217;s worse, thanks to the little red badge, or a blinking phone, even if I managed to have the will power to ignore the new email or phone call that just came in, I&#8217;m anxious and distracted until I stop and look at the new message.  But thanks to my little experiment, in the last week I&#8217;ve learned how to regain those lost minutes and hours, without losing my connectivity to the rest of the office.  Now on to what I did that made such a big difference.</div><div><ol><li>I disabled any audible mail, or calendar sounds.  (I left pop-up alerts active on my calendar as it&#8217;s easy for me to get distracted and miss meetings!)</li><li>I found a wonderful (Mac only) application, that hides the unread mail indicator from Mail.app.  ( <a href="http://www.tonyallevato.com/node/1">Mail Badger )</a>  This allows me to only check my email when I am between tasks and not have a steadily increasing little red number staring at me all morning.</li><li>While I&#8217;m at my desk, I set my phone to a non-vibrate, non-blink, mode for all messages.  This dodges the &#8220;double email&#8221; problem mentioned earlier, as well as keeping me from dropping concentration to check a personal email.  To increase the effect (and due to an odd issue where the screen randomly brightens as it charges) I flip my cell phone screen side down on my desk.</li><li>I started screening my calls if I&#8217;m in the middle of a task.  Obviously some calls you answer right away, but some of them you let go to voicemail.  I&#8217;d done this for a while with my cell-phone, but doing it with my office phone as well has made a huge difference. While this doesn&#8217;t eliminate the distraction, it does make it as minimal as possible.</li><li>I taped over my voicemail light on my desk phone.  It doesn&#8217;t completely hide the bright red blinking light.  It still serves as a reminder to check (or act on) whatever call came in, but again it minimizes the distraction as best as possible.</li></ol></div><div>Obviously some of these steps won&#8217;t work, or don&#8217;t apply to everyone.  I&#8217;m still an addict, despite this little experiment.  But thanks to a few simple tricks, I have regained my productivity from the continual blinking lights.  Have other suggestions?  Put them in the comments!</div></div></div>
+]]>
+		</content>
+	</entry>
+	
+</feed>

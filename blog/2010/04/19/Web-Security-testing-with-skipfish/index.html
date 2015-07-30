@@ -1,0 +1,161 @@
+
+<!doctype html>
+<!-- START OF _layouts/default.html -->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" >
+		<meta content="width=device-width,initial-scale=1" name="viewport">
+		<meta content="" name="description">
+		<meta content="just a dude abiding" name="author">
+		
+		<title>Web Security testing with skipfish &mdash; just a dude abiding</title>
+		
+		<!-- Styles -->
+		<link href="/stylesheets/main.css" rel="stylesheet">
+		
+		<!-- Google webfonts -->
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cousine">
+		
+		<!-- jQuery and plugins -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="/js/jquery.zclip.min.js"></script>
+		
+		<!-- Syntax highlighter -->
+		<link href="/stylesheets/prettify-hemisu.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/js/prettify.js"></script>
+		
+		<!--<link href="http://feeds.feedburner.com/turkeltaub" rel="alternate" title="just a dude abiding" type="application/rss+xml" />-->
+		
+	</head>
+	<body onload="prettyPrint()">
+	
+		<div class="wrap">
+	
+			<header>
+				<div class="title">just a dude abiding</div>
+				
+				<div class="navi">
+					<ul>
+						<li><a href="/">Blog</a></li>
+            <li><a href="/about.html">About</a></li>
+						<li><a href="/blog/archives">Archives</a></li>
+					</ul>
+				</div> <!-- // .navi -->
+			</header>
+		
+				<!-- START OF _layouts/post.html -->
+
+<!-- START OF _includes/article.html -->
+<article>
+	<header>
+		<h1><a href="/blog/2010/04/19/Web-Security-testing-with-skipfish/">Web Security testing with skipfish</a></h1>
+		<time>19 April 2010</time>
+	</header>
+		<div class="content">
+			<h3>Web App Security &#8211; an intro</h3>
+<p>In modern web applications there is an an alphabet soup of acronyms to keep in mind when writing your code, <span class="caps">SQL</span> injection, <span class="caps">XSS</span>, <span class="caps">XSRF</span>, <span class="caps">SSL</span>, just to name the common ones. <span class="caps">SQL</span> injection attacks tend to <a href="http://www.pcworld.com/businesscenter/article/146048/mass_sql_injection_attack_targets_chinese_web_sites.html">make</a> <a href="http://thedailywtf.com/Articles/Oklahoma-Leaks-Tens-of-Thousands-of-Social-Security-Numbers,-Other-Sensitive-Data.aspx">big</a> <a href="http://news.bbc.co.uk/2/hi/americas/8206305.stm">news</a> , but due to their publicity are also the most commonly secured vulnerabilities.  There is tons of <a href="http://www.google.com/search?sourceid=chrome&amp;ie=UTF-8&amp;q=preventing+sql+injection">documentation on preventing sql injection</a> but significantly less on properly handling <span class="caps">XSRF</span> and <span class="caps">XSS</span> attacks.  While these kinds of vulnerabilities can be seen by an experienced developer looking carefully over the code, there are very few automated tools for the job. Tools like <a href="http://cirt.net/nikto2">Nikto</a> and <a href="http://www.nessus.org/nessus/">Nessus</a> are great at scanning the underlying web server platform (<span class="caps">IIS</span>, Apache, etc), and in some cases identify some commonly known exploits.  But they aren&#8217;t designed to scan a running web application for unique attack vectors.</p>
+<h3>Some definitions</h3>
+<p>According to <a href="http://www.owasp.org" title="The Open Web Application Security Project (OWASP)"><span class="caps">OWASP</span></a> <span class="caps">XSS</span> is defined as</p>
+<blockquote>
+<p>Cross-site Scripting (<span class="caps">XSS</span>) attacks occur when an attacker uses a web application to send malicious code, generally in the form of a browser side script, to a different end user. Flaws that allow these attacks to succeed are quite widespread and occur anywhere a web application uses input from a user in the output it generates without validating or encoding it.</p>
+</blockquote>
+<p>In otherwords, <span class="caps">XSS</span> attacks happen whenever a site displays un-sanitized data directly.  This is without a question the most common type of attack on the internet.  Any application which takes data from the user is potentially vulnerable to this class of vulnerabilities.  Most major sites have suffered from at least a limited <span class="caps">XSS</span> vulnerability at some point. While they are extremely common, they aren&#8217;t easy to predict, or find. Even finding solid tools for auditing your own applications has been difficult until recently.</p>
+<p>The other class of attacks I want to look at are the even less well known, <span class="caps">XSRF</span> (sometimes listed as <span class="caps">CSRF</span>) vulnerabilities.  Again to <a href="http://www.owasp.org" title="The Open Web Application Security Project"><span class="caps">OWASP</span></a> for a definition:</p>
+<blockquote>
+<p><span class="caps">CSRF</span> is an attack which forces an end user to execute unwanted actions on a web application in which he/she is currently authenticated. With a little help of social engineering (like sending a link via email/chat), an attacker may force the users of a web application to execute actions of the attacker&#8217;s choosing. A successful <span class="caps">CSRF</span> exploit can compromise end user data and operation in case of normal user. If the targeted end user is the administrator account, this can compromise the entire web application.</p>
+</blockquote>
+<p>Again, simplified, the idea is to pick a fictional link like: http://yourapp.com/site/delete?confirm=yes, and get a user who you suspect is already logged into yourapp.com as an administrator. Take that link and find a method of getting a user to click this link.  There are numerous methods for accomplishing this, which I won&#8217;t even begin to cover here.  If done correctly this will cause a user to execute an action, with valid credentials, that they are not aware they are performing.</p>
+<p>As you can see these types of attacks are not specific to any particular web platform and therefore potentially possible in <em><strong>all</strong></em> web applications.  So now that you&#8217;ve heard the bad news, it&#8217;s time to get to some good news!  A new tool has been developed that makes identifying these kinds of vulnerabilities easier.  That tool is called <a href="http://code.google.com/p/skipfish/">skipfish</a>. I&#8217;ll let you read the description yourself, but in summary skipfish is a tool capable of doing filename fuzzing attacks, analyzing your application and altering it&#8217;s dictionary based on keywords from your site, handling authentication cookies, and filling out and validating form data.  That&#8217;s cool.</p>
+<h2>Introducing skipfish</h2>
+<p>Here&#8217;s more good news, skipfish is entirely open source.  Here&#8217;s the bad news, there are not (yet) pre-compiled binaries or official Windows support.  It should be possible to compile skipfish under <a href="http://www.cygwin.com/">cygwin</a> on Windows.  But for the sake of this article we&#8217;re going to assume you have access to some sort of <a href="http://debian.org">Debian</a> based distro (Ubuntu, Knoppix, Backtrack, etc). Now, let&#8217;s get to it!</p>
+<h2>Installing skipfish</h2>
+<div>
+<pre><code class='bash'>wget http://skipfish.googlecode.com/files/skipfish-1.32b.tgz
+<p>tar zxvf skipfish-1.32b.tgz<br />
+sudo apt-get install libidn11-dev<br />
+cd skipfish<br />
+make<br />
+cp dictionaries/default.wl skipfish.wl<br />
+./skipfish</code></pre></p>
+</div>
+<p>That should download skipfish, it&#8217;s dependency (libidn) and then compile and run skipfish.  Obviously we haven&#8217;t asked it to do much yet so you shouldn&#8217;t really see a lot of useful output at the end of this.  Now it&#8217;s time to get to work! I&#8217;m using skipfish to test an application I&#8217;m currently developing.  I recommend you have a local application to test against as it&#8217;s significantly (almost an order of magnitude) faster to test locally than against an internet based site.  All error reports posted from here on out relate to my application, yours will obviously show different data.</p>
+<h3>Testing with skipfish</h3>
+<p>We&#8217;ve got skipfish downloaded, installed, we&#8217;ve picked the application to test, now it&#8217;s time to actually hit it and see what happens! My test application is available at http://localhost, substitute your <span class="caps">URL</span> where necessary.  For starters let&#8217;s just hit the public facing portion of our app.  It&#8217;s possible to provide skipfish cookie data for an authorized session and have it look at the internal pages of your app, which we&#8217;ll look at later.</p>
+<div>
+<pre><code class='bash'>./skipfish -o output -U -b i http://localhost</code></pre>
+</div>
+<p>Now skipfish is off and running.  Let&#8217;s look at the arguments.  <strong>-o output</strong> tells skipfish to put the results into a directory named <em>output</em>, <strong>-U</strong> tells it to log any external URL&#8217;s and emails found (these might be targets for further auditing). <strong>-b i</strong> tells it to use a valid <span class="caps">MSIE</span> User Agent string when making requests.</p>
+<p>Depending on the speed of your test machine, the performance and size of your application, and probably a dozen other factors, it might take a few seconds, or several hours. Watch the dialog for a few minutes, gauge the amount of time you have, and then go get a soda, watch some TV, or whatever it is you do while waiting for things to finish.  We&#8217;ll move on to the next step once this has finished.</p>
+<p>My scan finished, and in record time (about half an hour, there&#8217;s a lot of pages!).  Now, skipfish has generated us an awesome report on what it&#8217;s found, and how it ranks the severity of those findings.  To open it, browse to the output directory we specified, and open the index.html file in either Firefox or IE (there is a known issue in WebKit browsers that makes opening heavily scripted local files difficult).</p>
+<p>In my case it found nothing severe, but found no shortage of interesting things to look it.  Under each category it provides a link to the <span class="caps">URL</span> it found the issue on, as well as a &#8220;show trace&#8221; button that will provide the <span class="caps">HTTP</span> request/response for that request. I&#8217;m not going to get into an analysis of the results in this article as there are a large variety of potential outputs and they will vary greatly with the application being scanned.  I&#8217;ll leave it as an exercise for the reader to analyze their individual results.</p>
+<p>There is though, a secret and amazingly powerful bit of data provided with each scan&#8217;s output.  One of the most interesting aspects of skipfish is that it runs in a non-deterministic manner.  This means that each unique run of skipfish can lead to a unique set of results.  While this is great from an initial testing perspective, it makes it difficult to perform follow-up tests to confirm that issues have been fixed.  Now, that secret bit of data? In the top right of each output page is a field labelled <em>Random Seed</em>.  You can feed this back into skipfish via the <strong>-q</strong> parameter to perform the exact same run again.</p>
+<p>Now let&#8217;s take a look giving it an authenticated session.  For starters I&#8217;m going to login to my local app in FireFox, and look at the cookies.  Your application&#8217;s login cookies will most likely look vastly different than my own, but I&#8217;ve simulated those from my application below.</p>
+<div>
+<pre><code class='bash'>./skipfish -o authed -U -b i -C authed=true -C userid=12 -X action=logout -N http://localhost/admin</code></pre>
+</div>
+<p>This time we specify a new output directory and <strong>-o authed</strong>, two cookies <strong>-C authed=true</strong> &amp; <strong>-C userid=12</strong>, these need to be replaced with the cookies from your application.  There can be as many of these as necessary.  We also specify a path to exclude, <strong>-X action=logout</strong>, this tells skipfish to ignore any <span class="caps">URL</span> that contains <strong>action=logout</strong> which in this case prevents skipfish from automatically being logged out.  Just to be double sure, we also specify <strong>-N</strong> which tells skipfish to ignore any attempts to delete cookies.</p>
+<p>Just like before, once this scan completes we need to open our output directory in FireFox to review the results.  Lucky for me there are again no high impact vulnerabilities to worry about, just some warnings and medium issues.</p>
+<h3>Conclusion</h3>
+<p>So there we have it, a brief run-through of a few of the stickier web app vulnerabilities, and an overview of a brand new tool to look for them! I haven&#8217;t used skipfish extensively yet, but it&#8217;s definitely a tool I plan to keep in my belt for application testing from here on out.</p>
+		</div>
+	<footer>
+		
+
+
+		
+
+
+
+
+	
+	
+	</footer>
+	
+</article>
+<!-- END OF _includes/article.html -->
+
+
+<!-- END OF _/layouts/post.html -->
+
+		
+			<footer>
+				Copyright &copy; 2015
+
+	Tanner Burson
+
+
+			</footer>
+			
+		</div> <!-- // .wrap -->
+	</body>
+	<script>
+		$(document).ready(function() {
+			// Make images center
+			$('p:has(img)').css('text-align', 'center');
+			
+			// Add the image's title attribute as a caption
+			$('p:has(img)').append(function () {
+				return '<div class="caption">' + ($('img', this).attr('title') || "") + '</div>';
+			});
+			
+			// Prettify code
+			$('code').addClass('prettyprint');
+			$('pre code').addClass('linenums');
+			
+			// Copy to clipboard with button
+			$('pre:has(code)').prepend(function(){
+				return '<div class="clip-btn">copy to clipboard</div>';
+			});
+			$('.clip-btn').zclip({
+				path:'/js/ZeroClipboard.swf',
+				copy: $(this).next('code').text(),
+				afterCopy: function(){
+					$(this).replaceWith('<div class="clip-btn">copied!');
+					}
+			});
+		});
+	</script>
+</html>
+<!-- END OF _layouts/default.html -->
