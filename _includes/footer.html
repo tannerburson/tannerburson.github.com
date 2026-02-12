@@ -1,9 +1,12 @@
 <footer class="footer-main">
-    {{ site.title }} © {{ site.time | date: '%Y' }}
+    {% include social-links.html %}
 
-    <a class="link" href="{{ site.url }}/feed.xml" target="_blank" alt="anchor link to rss feed" aria-label="anchor link to rss feed">
-        <i class="fa-solid fa-rss"></i>
-    </a>
+    <p class="copyright">
+        {{ site.title }} © {{ site.time | date: '%Y' }}
+        <a class="link" href="{{ site.url }}/feed.xml" target="_blank" alt="anchor link to rss feed" aria-label="anchor link to rss feed">
+            <i class="fa-solid fa-rss"></i>
+        </a>
+    </p>
 
     <p class="extra">
         <a class="link" href="https://github.com/sergiokopplin/indigo">Indigo theme</a>

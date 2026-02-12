@@ -9,8 +9,8 @@ description: Tanner Burson - Just a dude abiding
 # if it's an external image, update below for true
 # better with square images
 external-image: false
-picture: assets/images/tanner-large.jpg
-picture-selfie: assets/images/tanner-small.jpg
+picture: assets/images/tanner.jpg
+picture-selfie: assets/images/tanner.jpg
 
 # your site color theme, true for dark theme, 
 # false to light theme, auto to switch with system.
@@ -47,7 +47,7 @@ authors:
     name: Tanner Burson
     bio: Just a dude abiding
     external-image: false
-    picture: assets/images/profile.jpg
+    picture: assets/images/tanner.jpg
 
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
@@ -59,7 +59,7 @@ projects: false
 
 # if you don't need "about" or "blog", comment them out below
 about: true
-blog: false
+blog: true
 
 # do you want to show the "read time" of the posts?
 read-time: true
@@ -94,6 +94,14 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-paginate-v2
+
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page/:num/'
+  title: ':title - Page :num'
+  sort_reverse: true
 
 compress_html:
   ignore:

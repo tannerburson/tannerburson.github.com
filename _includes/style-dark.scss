@@ -1,23 +1,23 @@
 
-@import "base/variables-dark";
-@import "base/normalize";
-@import "base/syntax-dark";
-@import "base/general";
-@import "base/helpers";
+@use "base/variables-dark" as *;
+@use "base/normalize";
+@use "base/syntax-dark";
+@use "base/general";
+@use "base/helpers";
 
-@import "pages/home-blog-projects";
-@import "pages/page";
-@import "pages/post";
-@import "pages/tags";
+@use "pages/home-blog-projects";
+@use "pages/page";
+@use "pages/post";
+@use "pages/tags";
 
-@import "components/author";
-@import "components/disqus";
-@import "components/footer";
-@import "components/header";
-@import "components/nav";
-@import "components/others";
-@import "components/related";
-@import "components/share";
-@import "components/side-by-side";
-@import "components/social-links";
-@import "components/spoiler";
+@use "components/author";
+@use "components/disqus";
+@use "components/footer";
+@use "components/header";
+@use "components/nav";
+@use "components/others";
+@use "components/related";
+@use "components/share";
+@use "components/side-by-side";
+@use "components/social-links";
+@use "components/spoiler";

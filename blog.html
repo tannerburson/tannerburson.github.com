@@ -1,17 +1,42 @@
 ---
 layout: page
 title: Blog
+pagination:
+  enabled: true
+  category: blog
 ---
-<section class="list">
-	{% if site.posts.size == 0 %}
+<section class="blog-posts">
+	{% if paginator.total_posts == 0 %}
 		<p class="text-center">Nothing published yet!</p>
 	{% else %}
-		{% for post in site.posts %}
-			{% if post.category == 'blog' %}
-				{% if post.hidden != true %}
-					{% include blog-post.html %}
-				{% endif %}
+		{% for post in paginator.posts %}
+			{% if post.hidden != true %}
+				<article class="post-full">
+					<h2 class="post-title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h2>
+					<aside class="post-meta">
+						<time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date: "%B %d, %Y" }}</time>
+						{% if site.read-time %}
+							{% include read-time.html %}
+						{% endif %}
+					</aside>
+					<div class="post-content">
+						{{ post.content }}
+					</div>
+					<hr>
+				</article>
 			{% endif %}
 		{% endfor %}
+
+		{% if paginator.total_pages > 1 %}
+			<nav class="pagination">
+				{% if paginator.previous_page %}
+					<a href="{{ paginator.previous_page_path }}" class="prev">&laquo; Newer</a>
+				{% endif %}
+				<span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+				{% if paginator.next_page %}
+					<a href="{{ paginator.next_page_path }}" class="next">Older &raquo;</a>
+				{% endif %}
+			</nav>
+		{% endif %}
 	{% endif %}
 </section>
